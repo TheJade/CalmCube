@@ -23,5 +23,5 @@ git clone -b BRANCH_NAME REPOSITORY_URL NAME_DIRECTORY_SAVED_AS
 ^^this is the same as the previous command but the file gets saved as a different directory name so it doesn't conflict with the old save
 
 rm -r DIRECTORY_NAME
-^^removes the whole directory, careful cuz it's permanent, you have to remove/rename the old clone to be able to download a new one
+^^removes the whole directory, careful cuz it's permanent, you have to remove/rename the old clone to be able to download a new one, will need to type y or yes to confirm the removal of the files
 
