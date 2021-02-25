@@ -1,4 +1,5 @@
 # CalmCube
+The ^^ indicates the end of the command, don't include ^^ in the command.
 
 https://www.raspberrypi.org/documentation/linux/usage/commands.md
 ^^ great resource for linux (raspberry pi terminal) commands
