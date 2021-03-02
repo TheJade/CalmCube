@@ -2,7 +2,7 @@ import spidev
 import time
 
 spi = spidev.SpiDev(0, 0) # create spi object connecting to /dev/spidev0.1
-spi.max_speed_hz = 10000 # set speed to 10 Khz
+spi.max_speed_hz = 1 # set speed to 10 Khz
 timestart = time.time()
 print("Program Start")
 x = 0
