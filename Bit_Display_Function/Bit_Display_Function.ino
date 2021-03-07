@@ -10,11 +10,14 @@ const int slaveSelectPin = 10;  // don't change unless necessary
                         // use all caps when naming
 
 #define P_RAIN_EFFECT 6
+#define P_SNAKE_EFFECT 2
 
 //----------------GLOBAL---VARIBLES----------------------------------
 //don't add anything here, unless important to all states and functions
-boolean bits [24] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};   // array of the data to be displayed, in True and False values
-short state_pointer = P_RAIN_EFFECT;   //picks what state is currently run
+boolean bits [24] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};   // array of the data to be displayed, in 1 and 0 values
+short state_pointer = P_SNAKE_EFFECT;   //picks what state is currently run
+short substate_p=0;
+
 
 //----------------SETUP----------------------------------------------
 //will run once at the beginning of the program and never again
@@ -38,6 +41,7 @@ void loop() {
 //-------------------STATE----RELAY-----------------------------------
 //uses the function pointer to 
 void stateRelay() {
+  //snakeDisplay();
   rainEffect();
 }
 /*  if (state_pointer == P_FIRST_STATE_FUNCITON)
@@ -78,7 +82,7 @@ void rainEffect() {
   //static varibles don't get destroyed when the function ends
   //will add some randomization later to make the drops drip more randomly
   
-  bool testing_mode = false; //make true if you want to see the serial output for testing
+  bool testing_mode = 0; //make 1 if you want to see the serial output for testing
   
   unsigned int fade_length = 3000;  //milliseconds, 
   unsigned int fall_length = 250;   //milliseconds
@@ -124,14 +128,223 @@ void rainEffect() {
     bitsDisplay(); //need to make sure this function is working
     
     level = 1;
-    
-    restartDripStartTime(&drop[0], fade_length, fall_length); //don't need to check this all the time so it just goes on level 0
+
+    if(millis() > 2500)
+    {
+      restartDripStartTime(&drop[0], fade_length, fall_length); //don't need to check this all the time so it just goes on level 0
+    }
     
     if(testing_mode){serialPrintBits(&bits[0]);}  //this is just for testing
   }
 
 }
 
+void snakeDisplay()
+{
+  //displays snake pattern on slice
+  int i=0;
+  int n=24;
+  int j=0;
+  static unsigned long start = millis();  //won't be reassigned each loop
+  unsigned short on_length = 300; //value it holds for
+  
+  if(substate_p==0)
+  {
+    boolean startbits[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//Turn everything off
+    for(j=0; j<n; j++)
+    {
+      bits[j] = startbits[j];
+    }
+    if ((millis()-start) > on_length){
+      substate_p = 1;
+      start = millis();
+      bitsDisplay();
+    }  
+  }
+  
+  else if(substate_p=1)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 1 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 2;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=2)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 2 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 3;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=3)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 3 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 4;
+      start = millis();
+      bitsDisplay();
+    }
+  } 
+  
+  else if(substate_p=4)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0};//floor 1 LED 4 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 5;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=5)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0};//floor 1 LED 5 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 6;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+    
+    
+  else if(substate_p=6)
+  {
+    boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0};//floor 1 LED 6 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 7;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=7)
+  {
+      boolean transferbits[]= {0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 2 LED 1 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 8;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+    
+    
+  else if(substate_p=8)
+  {
+    boolean transferbits[]= {0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 2 LED 2 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 9;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=9)
+  {
+    boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0}; //floor 2 LED 3 red on
+    for(j=0; j<n; j++)
+      {
+        bits[j] = transferbits[j];
+      }
+    if ((millis()-start) > on_length){
+      substate_p = 10;
+      start = millis();
+      bitsDisplay();
+    }
+  } 
+  
+  else if(substate_p=10)
+  {
+    boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0}; //floor 2 LED 4 red on
+    for(j=0; j<n; j++)
+    {
+      bits[j] = transferbits[j];
+    }
+    if ((millis()-start) > on_length)
+    {
+      substate_p = 11;
+      start = millis();
+      bitsDisplay();
+    }
+  }
+  
+  else if(substate_p=11)
+  {
+    boolean transferbits[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0}; //floor 2 LED 5 red on
+    for(j=0; j<n; j++)
+        {
+            bits[j] = transferbits[j];
+        }
+    if ((millis()-start) > on_length){
+      substate_p = 12;
+      start = millis();
+      bitsDisplay();
+    }
+  }  
+  
+  else if(substate_p=12){
+    boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0}; //floor 2 LED 6 red on
+    for(j=0; j<n; j++)
+        {
+            bits[j] = transferbits[j];
+        }
+    if ((millis()-start) > on_length){
+      substate_p = 1;
+      start = millis();
+      bitsDisplay();
+    }
+  }  
+  
+  else
+  {
+    i++;
+  }
+}
 
 //-------------------COMMON---FUNCTIONS-------------------------------
 // functions often used by the different state functions
@@ -191,12 +404,12 @@ void LEDGrow(bool *temp_bits, unsigned short drop[6], unsigned int fade_length){
     else
       brightness = 0;
     if (time_since_start % brightness == 0){
-      *(temp_bits + 2 + 3*i) = true;   //writes true to blue
+      *(temp_bits + 2 + 3*i) = 1;   //writes 1 to blue
     }
     else{
-      *(temp_bits + 3*i) = false;       //writes false to red
-      *(temp_bits + 1 + 3*i) = false;   //writes false to green
-      *(temp_bits + 2 + 3*i) = false;   //writes false to blue
+      *(temp_bits + 3*i) = 0;       //writes 0 to red
+      *(temp_bits + 1 + 3*i) = 0;   //writes 0 to green
+      *(temp_bits + 2 + 3*i) = 0;   //writes 0 to blue
     }
   }
 }
@@ -205,12 +418,12 @@ void dripFall(bool *temp_bits, unsigned short drop[6], unsigned int fade_length,
   for (int i = 0; i < 6; i++){
     unsigned long time_since_start = millis() - drop[i]; //this would help with speed
     if (((fade_length + (4-level)*fall_length) < time_since_start) && (time_since_start < (fade_length + (5-level)*fall_length))){  //puts bounds on on region
-      *(temp_bits + 2 + 3*i) = true;
+      *(temp_bits + 2 + 3*i) = 1;
     }
     else{
-      *(temp_bits + 3*i) = false;       //writes false to red
-      *(temp_bits + 1 + 3*i) = false;   //writes false to green
-      *(temp_bits + 2 + 3*i) = false;   //writes false to blue
+      *(temp_bits + 3*i) = 0;       //writes 0 to red
+      *(temp_bits + 1 + 3*i) = 0;   //writes 0 to green
+      *(temp_bits + 2 + 3*i) = 0;   //writes 0 to blue
     }
   }
 }
