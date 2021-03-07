@@ -20,7 +20,7 @@ short state_pointer = P_RAIN_EFFECT;   //picks what state is currently run
 //will run once at the beginning of the program and never again
 void setup() {
   Serial.begin(9600);       //needed for the Serial to communicate properly
-  Serial.println("Start");  //prints the message to the Serial monitor 
+  //Serial.println("Start");  //prints the message to the Serial monitor 
   pinMode(slaveSelectPin, OUTPUT);  //sets up the SlaveSelect (Strobe) pin
   // initialize SPI:
   SPI.begin();
@@ -58,7 +58,7 @@ void stateRelay() {
 //will stay in each of these states an a pattern or main function is running
 
 void firstStateFunction(){  // just an example, please pick more descriptive sames like: "colourFade"
-  Serial.println("Running First State");
+  //Serial.println("Running First State");
   bitsDisplay();
 }
 
@@ -159,7 +159,7 @@ int bool2Int(bool boolArray[], int size)
   {
    result |= boolArray[i] << i;
   }
-  Serial.println(result);
+  //Serial.println(result);
   return result;
 }
 void array8section(bool boolArray[], int n)
@@ -234,7 +234,7 @@ void serialPrintBits(bool *temp){ //this is for testing
     //testing
     //LSB first
       for(int i=0; i<24; i++){
-        Serial.print(temp[i]);
+        //Serial.print(temp[i]);
       }
-      Serial.println("");
+      //Serial.println("");
 }
