@@ -41,7 +41,8 @@ void loop() {
 //-------------------STATE----RELAY-----------------------------------
 //uses the function pointer to 
 void stateRelay() {
-  snakeDisplay();
+  //snakeDisplay();
+  stateSlowDemo();
   //rainEffect();
 }
 /*  if (state_pointer == P_FIRST_STATE_FUNCITON)
@@ -73,6 +74,66 @@ void idle() {
     when user hits button
     state_pointer = 1
   */
+}
+
+//Jade's slow demo code below-------------------------------------------------
+void stateSlowDemo() {
+  //turns on down right of top left led to purple, 
+  //  but this is a demo so it is slow to start 
+  //  then speeds up to demonstarate how we update the cube's display
+  
+  //bool testing_mode = false; //make true if you want to see the serial output for testing
+
+  
+  //adjustable values to get the timing right
+  unsigned int time_per_layer_slow = 100;  //milliseconds
+  unsigned int time_slow_mode = 5000;   //milliseconds
+  static unsigned short colour_RGB[3] = {255, 127, 0}; //only has 8 levels of each colour, so not a huge change
+  
+  //state static varibles
+  static unsigned short level = 0;  //layer the board will display
+  static bool temp_bits[24];
+  static unsigned long runs;  //number of times the RGBdisplay function has run
+  
+  temp_bits[8] = false;  //blue of first column will always be on to demonstarte the layers changeing, can just call this once but doesn't really matter
+  
+  for (int i = 0; i < 6; i++){    //makes the layer it's currently on high
+    temp_bits[i] = (level == i);  //active high
+  }
+  if  (level == 4){
+    RGBdisplay(&temp_bits[18], colour_RGB, runs); //points at 18 cuz we don't need to look at the other values
+    
+    if (runs > 4000000000){ //prevents overflow even tho I think it would be fine
+      runs = 0;
+    }
+    runs++;
+    
+    tempCopyToBits(&temp_bits[0]);
+    
+    bitsDisplay(); //need to make sure this function is working
+    
+    //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
+  }
+  else{
+    temp_bits[18] = false;
+    temp_bits[19] = false;
+    temp_bits[20] = false;
+    
+    tempCopyToBits(&temp_bits[0]);
+    
+    bitsDisplay(); //need to make sure this function is working
+    
+    //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
+
+  }
+  
+  if  (millis() < time_slow_mode){
+    delay(time_per_layer_slow);
+  }
+  level++;
+  if (level > 5){
+    level = 0;
+  }
 }
 
 //modifications Jade made------below
@@ -380,6 +441,18 @@ void array8section(bool boolArray[], int n)
     n++;
   }
   
+}
+
+//___Common____Functions___For___stateSlowDemo_____
+
+void RGBdisplay (bool *temp_bits, unsigned short colour[3], unsigned long runs){  //this functions doesn't work perfectly
+  //uses 8 different display values
+  for (int i = 0; i < 3; i++){
+    unsigned short RGB_amount = floor(colour[i]/29);  //floor just round down the value to the nearest whole number
+    if(RGB_amount && (runs % (9 - RGB_amount) == 0)){  //doesn't quite work perfectly but it is close, issue with 50% on
+      *(temp_bits + i) = true;
+    }
+  }
 }
 
 void LEDGrow(bool *temp_bits, unsigned short drop[6], unsigned int fade_length){
