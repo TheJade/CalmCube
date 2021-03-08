@@ -88,14 +88,14 @@ void stateSlowDemo() {
   //adjustable values to get the timing right
   unsigned int time_per_layer_slow = 100;  //milliseconds
   unsigned int time_slow_mode = 5000;   //milliseconds
-  static unsigned short colour_RGB[3] = {255, 127, 0}; //only has 8 levels of each colour, so not a huge change
+  static unsigned short colour_RGB[3] = {0, 220, 255}; //only has 8 levels of each colour, so not a huge change
   
   //state static varibles
   static unsigned short level = 0;  //layer the board will display
   static bool temp_bits[24];
   static unsigned long runs;  //number of times the RGBdisplay function has run
   
-  temp_bits[8] = false;  //blue of first column will always be on to demonstarte the layers changeing, can just call this once but doesn't really matter
+  temp_bits[8] = true;  //blue of first column will always be on to demonstarte the layers changeing, can just call this once but doesn't really matter
   
   for (int i = 0; i < 6; i++){    //makes the layer it's currently on high
     temp_bits[i] = (level == i);  //active high
@@ -114,11 +114,35 @@ void stateSlowDemo() {
     
     //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
   }
-  else{
-    temp_bits[18] = false;
-    temp_bits[19] = false;
-    temp_bits[20] = false;
+  else if (level == 5){
+    RGBdisplay(&temp_bits[12], colour_RGB, runs); //points at 18 cuz we don't need to look at the other values
     
+    tempCopyToBits(&temp_bits[0]);
+    
+    bitsDisplay(); //need to make sure this function is working
+    
+    //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
+  }
+  else if (level == 3){
+    RGBdisplay(&temp_bits[9], colour_RGB, runs); //points at 18 cuz we don't need to look at the other values
+    
+    tempCopyToBits(&temp_bits[0]);
+    
+    bitsDisplay(); //need to make sure this function is working
+    
+    //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
+  }
+  else if (level == 2){
+    RGBdisplay(&temp_bits[18], colour_RGB, runs); //points at 18 cuz we don't need to look at the other values
+    
+    tempCopyToBits(&temp_bits[0]);
+    
+    bitsDisplay(); //need to make sure this function is working
+    
+    //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
+  }
+  else{
+
     tempCopyToBits(&temp_bits[0]);
     
     bitsDisplay(); //need to make sure this function is working
@@ -126,7 +150,9 @@ void stateSlowDemo() {
     //if(testing_mode){serialPrintBits(&bits[0]);}  // for testing
 
   }
-  
+  for (int i = 0; i < 24; i++){ //resets all the values to false so no values are retained from last update
+    temp_bits[i] = false;
+  }
   if  (millis() < time_slow_mode){
     delay(time_per_layer_slow);
   }
