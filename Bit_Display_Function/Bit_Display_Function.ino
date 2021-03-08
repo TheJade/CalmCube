@@ -18,7 +18,7 @@ const int slaveSelectPin = 10;  // don't change unless necessary
 boolean bits [24] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};   // array of the data to be displayed, in 1 and 0 values
 short state_pointer = P_SNAKE_EFFECT;   //picks what state is currently run
 short substate_p = 0;
-int temp_millis = 0;
+unsigned long temp_millis = 0;
 
 //----------------SETUP----------------------------------------------
 //will run once at the beginning of the program and never again
@@ -82,7 +82,7 @@ void stateSlowDemo() {
   
   //adjustable values to get the timing right
   unsigned int time_per_layer_slow = 200;  //milliseconds
-  unsigned int time_slow_mode = temp_millis - 3000;   //milliseconds
+  unsigned long time_slow_mode = temp_millis - 3000;   //milliseconds
   static unsigned short colour_RGB[3] = {255, 0, 220}; //only has 8 levels of each colour, so not a huge change
   
   //state static varibles
@@ -160,6 +160,7 @@ void stateSlowDemo() {
   {
     temp_millis = 0;
     state_pointer = P_SNAKE_EFFECT;
+    level = 0;
   }
 }
 
@@ -234,7 +235,7 @@ void snakeDisplay()
   int n=24;
   int j=0;
   static unsigned long start = millis();  //won't be reassigned each loop
-  unsigned short on_length = 300; //value it holds for
+  unsigned short on_length = 100; //value it holds for
   
   if(substate_p == 0){
     boolean startbits[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//Turn everything off
