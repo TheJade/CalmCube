@@ -638,7 +638,7 @@ void snakeDisplay()
   
   else if(substate_p == 33)
   {
-    boolean transferbits[]= {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0}; //floor 6 LED 4 cyan on
+    boolean transferbits[]= {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0}; //floor 6 LED 4 cyan on
     for(j=0; j<n; j++)
       {
         bits[j] += transferbits[j];
