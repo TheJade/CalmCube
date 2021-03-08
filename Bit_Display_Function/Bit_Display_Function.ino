@@ -41,8 +41,8 @@ void loop() {
 //-------------------STATE----RELAY-----------------------------------
 //uses the function pointer to 
 void stateRelay() {
-  //snakeDisplay();
-  rainEffect();
+  snakeDisplay();
+  //rainEffect();
 }
 /*  if (state_pointer == P_FIRST_STATE_FUNCITON)
   {
@@ -84,11 +84,11 @@ void rainEffect() {
   
   bool testing_mode = 0; //make 1 if you want to see the serial output for testing
   
-  unsigned int fade_length = 3000;  //milliseconds, 
-  unsigned int fall_length = 250;   //milliseconds
+  unsigned int fade_length = 2000;  //milliseconds, 
+  unsigned int fall_length = 100;   //milliseconds
   static bool temp_bits[24];
   unsigned short fade_rate = 2;     //increase to increase the speed the colour turns on or off
-  static unsigned short drop[6] = {0, 500,1000,1500,2000,2500};    //contains the info for each drop, the drop[drop#][time_start_fade]
+  static unsigned short drop[6] = {0, 250,500,750,1000,1250};    //contains the info for each drop, the drop[drop#][time_start_fade]
   static unsigned short level = 0; //layer the board will display
   
   for (int i = 0; i < 6; i++){    //makes the layer it's currently on high
@@ -148,11 +148,9 @@ void snakeDisplay()
   static unsigned long start = millis();  //won't be reassigned each loop
   unsigned short on_length = 300; //value it holds for
   
-  if(substate_p==0)
-  {
+  if(substate_p == 0){
     boolean startbits[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//Turn everything off
-    for(j=0; j<n; j++)
-    {
+    for(j=0; j<n; j++){
       bits[j] = startbits[j];
     }
     if ((millis()-start) > on_length){
@@ -162,7 +160,7 @@ void snakeDisplay()
     }  
   }
   
-  else if(substate_p=1)
+  else if(substate_p == 1)
   {
     boolean transferbits[]= {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 1 red on
     for(j=0; j<n; j++)
@@ -177,12 +175,12 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=2)
+  else if(substate_p == 2)
   {
     boolean transferbits[]= {1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 2 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -192,12 +190,12 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=3)
+  else if(substate_p == 3)
   {
     boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0};//floor 1 LED 3 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -207,12 +205,12 @@ void snakeDisplay()
     }
   } 
   
-  else if(substate_p=4)
+  else if(substate_p == 4)
   {
     boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0};//floor 1 LED 4 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -222,12 +220,12 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=5)
+  else if(substate_p == 5)
   {
     boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0};//floor 1 LED 5 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -237,13 +235,12 @@ void snakeDisplay()
     }
   }
     
-    
-  else if(substate_p=6)
+  else if(substate_p == 6)
   {
     boolean transferbits[]= {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0};//floor 1 LED 6 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -253,7 +250,7 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=7)
+  else if(substate_p == 7)
   {
       boolean transferbits[]= {0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 2 LED 1 red on
     for(j=0; j<n; j++)
@@ -269,12 +266,12 @@ void snakeDisplay()
   }
     
     
-  else if(substate_p=8)
+  else if(substate_p == 8)
   {
     boolean transferbits[]= {0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//floor 2 LED 2 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -284,12 +281,12 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=9)
+  else if(substate_p == 9)
   {
     boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0}; //floor 2 LED 3 red on
     for(j=0; j<n; j++)
       {
-        bits[j] = transferbits[j];
+        bits[j] += transferbits[j];
       }
     if ((millis()-start) > on_length){
       substate_p = 10;
@@ -298,12 +295,12 @@ void snakeDisplay()
     }
   } 
   
-  else if(substate_p=10)
+  else if(substate_p == 10)
   {
     boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0}; //floor 2 LED 4 red on
     for(j=0; j<n; j++)
     {
-      bits[j] = transferbits[j];
+      bits[j] += transferbits[j];
     }
     if ((millis()-start) > on_length)
     {
@@ -313,12 +310,12 @@ void snakeDisplay()
     }
   }
   
-  else if(substate_p=11)
+  else if(substate_p == 11)
   {
     boolean transferbits[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0}; //floor 2 LED 5 red on
     for(j=0; j<n; j++)
         {
-            bits[j] = transferbits[j];
+            bits[j] += transferbits[j];
         }
     if ((millis()-start) > on_length){
       substate_p = 12;
@@ -327,11 +324,11 @@ void snakeDisplay()
     }
   }  
   
-  else if(substate_p=12){
+  else if(substate_p == 12){
     boolean transferbits[]= {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0}; //floor 2 LED 6 red on
     for(j=0; j<n; j++)
         {
-            bits[j] = transferbits[j];
+            bits[j] += transferbits[j];
         }
     if ((millis()-start) > on_length){
       substate_p = 1;
