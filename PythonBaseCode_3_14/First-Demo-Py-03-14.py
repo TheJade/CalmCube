@@ -1,5 +1,10 @@
+#TO DOs:
+#   -maybe need to set the whole msg to False every once in a while to make sure Trues don't carry over 
+#   from previous code
 
-test = True #make true if wanting to print instead of run the code
+
+test = False #make True if wanting to print instead of run the code
+test_speed = 0.05   #just a delay in seconds so that the terminal read out isn't too quick
 
 #----------------LIBRARY------------------------------------------
 
@@ -22,11 +27,17 @@ finally:
 RAIN_EFFECT = 2
 SNAKE_EFFECT = 3
 SLOW_DEMO = 4
+TEST_EFFECT = 5
 
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
-statePointer = 0
+statePointer = 5
 msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
+runs = 0    #might need to loop if it gets too large
+level = 0
+
+#testEffects global varibles (won't change for each function call) need to import it into the function with global VARBILE_NAME
+
 
 #----------------SETUP----------------------------------------------
 #will run once at the beginning of the program and never again
@@ -58,14 +69,14 @@ def stateRelay():
         stateSlowDemo()
     elif statePointer == RAIN_EFFECT:
         rainEffect()
+    elif statePointer == TEST_EFFECT:
+        testEffect()
     else:
         idle()
 #-------------------STATE----FUNCTIONS-------------------------------
 #will stay in each of these states an a pattern or main function is runnin
 def idle():
-    #maybe somehow enter low power mode or something
-    bitsDisplay()
-    time.sleep(3)
+    pass    #just needs something in it to not cause an error
 
 def snakeDisplay():
     pass
@@ -76,34 +87,89 @@ def stateSlowDemo():
 def rainEffect():
     pass
 
+def testEffect():
+    global runs #need to runs global to call in global varible
+    global level
+    #maybe somehow enter low power mode or something
+    for i in range(6):
+        msg[i] = (level == i)
+    if level == 5:
+        RGBdisplay(0, [0, 0, 0], runs)          #should be off
+        RGBdisplay(1, [8, 8, 8], runs, 0)    # white but brighter then then led 2
+        RGBdisplay(2, [8, 8, 8], runs, 2)    # this one should be slightly dimmer
+    elif level == 4:
+        RGBdisplay(0, [3, 252, 252], runs)  #just a colour
+        RGBdisplay(1, [3, 252, 252], runs)
+        RGBdisplay(2, [3, 252, 252], runs)
+    elif level == 3:
+        RGBdisplay(0, [73, 68, 212], runs)     #purple
+        RGBdisplay(1, [118, 115, 217], runs)   #lighter purple
+        RGBdisplay(2, [166, 165, 212], runs)   #even lighter purple
+    elif level == 2:
+        RGBdisplay(0, [73, 68, 212], runs, 1)     #purple  with 16 bit colour 
+        RGBdisplay(1, [118, 115, 217], runs, 1)   #lighter purple
+        RGBdisplay(2, [166, 165, 212], runs, 1)   #even lighter purple 
+    elif level == 1:    
+        RGBdisplay(0, [73, 68, 212], runs, 2)     #purple  with 32 bit colour 
+        RGBdisplay(1, [118, 115, 217], runs, 2)   #lighter purple
+        RGBdisplay(2, [166, 165, 212], runs, 2)   #even lighter purple 
+    elif level == 0:
+        RGBdisplay(0, [255, 125, 244], runs, 2) #just nice colours
+        RGBdisplay(1, [212, 255, 0], runs, 2)
+        RGBdisplay(2, [255, 176, 107], runs, 2)
+    else:
+        raise Exception("An error occured with the testEffect Level")
+    level += 1
+    runs += 1   #increment runs only once per layer cycle
+    bitsDisplay()
+
 
 #-------------------COMMON---FUNCTIONS-------------------------------
 # functions often used by the different state functions
 
 def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    #less then one layer testing
-    more_than_one_level = 0
-    for i in range(6):
-        more_than_one_level += msg[i]
-    if more_than_one_level > 1:
-        print("Multiple layers active, ignoring for testing mode")
-        if not test:
-            raise Exception("More then one layer is on at a time")
     #spi.writebytes
+    global runs
+    errorProtection()
     if not test:    #seems like there should be a more efficient way of doing this
         for i in range(15):
             byte = 0
             for j in range(8):
                 if msg[8*(14-i) + j]:   #(14-i) might have to become just i
                     byte += 2**(7-j)    #for MSB
-            spi.writebytes(byte)
+            spi.writebytes(byte) 
     #testing output print           
     else:   #modify the below for test formatting
-        print("Level:", list(map(int, msg[0:6])))
+        print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
         for i in range(36):
-            print(list(map(int, msg[(6 + i*3):(9 + 3*i)])), end = '  ')
+            print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ')
             if i % 6 == 5:
                 print("\n")
+    
+def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
+    #position is column of LED, 
+    #colour is an array of size 3 defining the colour parameters, 
+    #runs is a constant that must be passed, 
+    #mode is the number of colour bits (0 is for 8 bit colour, 1 is for 16, 2 is for 32) the higher the mode the more accurate colours but longer it takes to update the led
+  global msg    #I'm not sure if this is needed but just in case I have it in
+  for i in range(3):
+    msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
+
+def errorProtection():
+    #error for multiple layers on
+    more_than_one_level = 0
+    for i in range(6):
+        more_than_one_level += msg[i]
+    if more_than_one_level > 1:
+        print("Multiple layers active, ignoring for testing mode")
+        if not test:
+            raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
+    #runs in too large or negaitive
+    global runs
+    if (runs < 0):
+        runs = 0
+    elif (runs > 2_100_000_000):
+        runs = 0
     
 
 #------------------MAIN------LOOP-----------------------------------
@@ -113,6 +179,8 @@ def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
         stateRelay()
+        if test:
+            time.sleep(test_speed)
 
 finally:
     if not test:    #we might want to remove this conditional statement
