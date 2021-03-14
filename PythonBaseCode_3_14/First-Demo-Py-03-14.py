@@ -120,6 +120,8 @@ def testEffect():
     else:
         raise Exception("An error occured with the testEffect Level")
     level += 1
+    if level > 5:
+        level = 0
     runs += 1   #increment runs only once per layer cycle
     bitsDisplay()
 
