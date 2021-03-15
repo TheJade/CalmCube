@@ -6,6 +6,7 @@
 
 test = False #make True if wanting to print instead of run the code
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
+real_delay = 0.001
 
 #----------------LIBRARY------------------------------------------
 
@@ -71,6 +72,7 @@ except:
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
 def stateRelay():
+    print("In stateRelay")
     if statePointer == SNAKE_EFFECT:
         snakeDisplay()
     elif statePointer == SLOW_DEMO:
@@ -98,6 +100,7 @@ def rainEffect():
     pass
 
 def simpleTestEffect(): #should just turn on the first light on level 2 to purple
+    print("In simpleTestEffect")
     global runs
     global level
     global msg
@@ -154,6 +157,7 @@ def testEffect():
 
 def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #spi.writebytes
+    print("bitsDisplay")
     try:
         global runs
         global msg
@@ -182,6 +186,7 @@ def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a per
     #colour is an array of size 3 defining the colour parameters, 
     #runs is a constant that must be passed, 
     #mode is the number of colour bits (0 is for 8 bit colour, 1 is for 16, 2 is for 32) the higher the mode the more accurate colours but longer it takes to update the led
+    print("In RGBdisplay")
     try:
 
         global msg    #I'm not sure if this is needed but just in case I have it in
@@ -191,6 +196,7 @@ def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a per
         print("Error occurred in RGBdisplay")
 
 def errorProtection():
+    print("In errorProtection")
     try:
         global msg
         global runs
@@ -217,7 +223,9 @@ def errorProtection():
 
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
+        print("In main loop")
         stateRelay()
+        time.sleep(real_delay)  
         if test:
             time.sleep(test_speed)
 
