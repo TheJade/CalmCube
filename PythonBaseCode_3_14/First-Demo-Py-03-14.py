@@ -151,13 +151,16 @@ def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     global runs
     global msg
     errorProtection()
-    if not test:    #seems like there should be a more efficient way of doing this
-        for i in range(15):
-            byte = 0
-            for j in range(8):
-                if msg[8*(14-i) + j]:   #(14-i) might have to become just i
-                    byte += 2**(7-j)    #for MSB
-            spi.writebytes(byte) 
+    try:
+        if not test:    #seems like there should be a more efficient way of doing this
+            for i in range(15):
+                byte = 0
+                for j in range(8):
+                    if msg[8*(14-i) + j]:   #(14-i) might have to become just i
+                        byte += 2**(7-j)    #for MSB
+                spi.writebytes(byte) 
+    except:
+        print("Error occurred in bitsDisplay")
     #testing output print           
     else:   #modify the below for test formatting
         print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
@@ -171,26 +174,33 @@ def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a per
     #colour is an array of size 3 defining the colour parameters, 
     #runs is a constant that must be passed, 
     #mode is the number of colour bits (0 is for 8 bit colour, 1 is for 16, 2 is for 32) the higher the mode the more accurate colours but longer it takes to update the led
-  global msg    #I'm not sure if this is needed but just in case I have it in
-  for i in range(3):
-    msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
+    try:
+
+        global msg    #I'm not sure if this is needed but just in case I have it in
+        for i in range(3):
+            msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
+    except:
+        print("Error occurred in RGBdisplay")
 
 def errorProtection():
-    global msg
-    global runs
-    #error for multiple layers on
-    more_than_one_level = 0
-    for i in range(6):
-        more_than_one_level += msg[i]
-    if more_than_one_level > 1:
-        print("Multiple layers active, ignoring for testing mode")
-        if not test:
-            raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
-    #runs in too large or negaitive
-    if (runs < 0):
-        runs = 0
-    elif (runs > 2_100_000_000):
-        runs = 0
+    try:
+        global msg
+        global runs
+        #error for multiple layers on
+        more_than_one_level = 0
+        for i in range(6):
+            more_than_one_level += msg[i]
+        if more_than_one_level > 1:
+            print("Multiple layers active, ignoring for testing mode")
+            if not test:
+                raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
+        #runs in too large or negaitive
+        if (runs < 0):
+            runs = 0
+        elif (runs > 2_100_000_000):
+            runs = 0
+    except:
+        print("Error occurred in errorProtection")
     
 
 #------------------MAIN------LOOP-----------------------------------
