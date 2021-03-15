@@ -1,6 +1,7 @@
 #TO DOs:
 #   -maybe need to set the whole msg to False every once in a while to make sure Trues don't carry over 
 #   from previous code
+#   -auto go into test mode if not import spidev
 
 
 test = False #make True if wanting to print instead of run the code
@@ -93,6 +94,7 @@ def rainEffect():
 def simpleTestEffect(): #should just turn on the first light on level 2 to purple
     global runs
     global level
+    global msg
     level = 2
     msg[2] = True
     msg[6] = True
@@ -104,6 +106,7 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
 def testEffect():
     global runs #need to runs global to call in global varible
     global level
+    global msg
     #maybe somehow enter low power mode or something
     for i in range(6):
         msg[i] = (level == i)
@@ -146,6 +149,7 @@ def testEffect():
 def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #spi.writebytes
     global runs
+    global msg
     errorProtection()
     if not test:    #seems like there should be a more efficient way of doing this
         for i in range(15):
@@ -172,6 +176,8 @@ def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a per
     msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
 
 def errorProtection():
+    global msg
+    global runs
     #error for multiple layers on
     more_than_one_level = 0
     for i in range(6):
@@ -181,7 +187,6 @@ def errorProtection():
         if not test:
             raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
     #runs in too large or negaitive
-    global runs
     if (runs < 0):
         runs = 0
     elif (runs > 2_100_000_000):
