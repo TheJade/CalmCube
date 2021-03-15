@@ -33,10 +33,13 @@ SIMPLE_TEST_EFFECT = 6
 
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
-statePointer = 6
-msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
-runs = 0    #might need to loop if it gets too large
-level = 0
+try:
+    statePointer = 6
+    msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
+    runs = 0    #might need to loop if it gets too large
+    level = 0
+except:
+    print("error in global varibles")
 
 #testEffects global varibles (won't change for each function call) need to import it into the function with global VARBILE_NAME
 
@@ -44,23 +47,26 @@ level = 0
 #----------------SETUP----------------------------------------------
 #will run once at the beginning of the program and never again
     #the setup code goes here
-if not test:    #only runs if not in the testing mode
-    spi = spidev.SpiDev(0, 0)   #this function creates an instance of the object spidev called spi (you can call it whatever you like). 
-                            #   The first parameter is the spi pin group select.
-                            #       Meaning, it will utilize all the pins (SPI0_MOSI, SPI0_MISO, SPI0_SCLK, SPI0_CE0_N) in the default spi group on the board
-                            #       To have use the other set of pins I think we set the first parameter to 1
-                            #       For the first version of the code we will only be utilizing the defualt spi pins on the GPIOs
-                            #   The second parameter is the CE select (also known as slave select).
-                            #       We use this for selecting what slave gets written to.
-                            #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
-                            #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-    spi.max_speed_hz = 2000000  #this class attribute defines the max speed the data will be transfered to the device in hz
-                            #   For the raspberry pi don't set it any higher then 32 Mhz
-                            #   There is a debate about permissible speed values, with some insisting
-                            #   that the speed must be a power of 2, while others argue that it can be a
-                            #   multiple of 2. Tests at least partially confirm that the latter is correct. It
-                            #   was possible to set the speed at 3800 Hz, which appears to be a lower
-                            #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
+try:
+    if not test:    #only runs if not in the testing mode
+        spi = spidev.SpiDev(0, 0)   #this function creates an instance of the object spidev called spi (you can call it whatever you like). 
+                                #   The first parameter is the spi pin group select.
+                                #       Meaning, it will utilize all the pins (SPI0_MOSI, SPI0_MISO, SPI0_SCLK, SPI0_CE0_N) in the default spi group on the board
+                                #       To have use the other set of pins I think we set the first parameter to 1
+                                #       For the first version of the code we will only be utilizing the defualt spi pins on the GPIOs
+                                #   The second parameter is the CE select (also known as slave select).
+                                #       We use this for selecting what slave gets written to.
+                                #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
+                                #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
+        spi.max_speed_hz = 20000  #this class attribute defines the max speed the data will be transfered to the device in hz
+                                #   For the raspberry pi don't set it any higher then 32 Mhz
+                                #   There is a debate about permissible speed values, with some insisting
+                                #   that the speed must be a power of 2, while others argue that it can be a
+                                #   multiple of 2. Tests at least partially confirm that the latter is correct. It
+                                #   was possible to set the speed at 3800 Hz, which appears to be a lower
+                                #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
+except:
+    print("error in setup")
 
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
@@ -148,10 +154,11 @@ def testEffect():
 
 def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #spi.writebytes
-    global runs
-    global msg
-    errorProtection()
     try:
+        global runs
+        global msg
+        errorProtection()
+
         if not test:    #seems like there should be a more efficient way of doing this
             for i in range(15):
                 byte = 0
@@ -159,15 +166,16 @@ def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     if msg[8*(14-i) + j]:   #(14-i) might have to become just i
                         byte += 2**(7-j)    #for MSB
                 spi.writebytes(byte) 
+    
+        #testing output print           
+        else:   #modify the below for test formatting
+            print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
+            for i in range(36):
+                print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ')
+                if i % 6 == 5:
+                    print("\n")
     except:
         print("Error occurred in bitsDisplay")
-    #testing output print           
-    else:   #modify the below for test formatting
-        print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-        for i in range(36):
-            print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ')
-            if i % 6 == 5:
-                print("\n")
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
