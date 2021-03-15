@@ -4,7 +4,7 @@
 
 
 test = False #make True if wanting to print instead of run the code
-test_speed = 0.05   #just a delay in seconds so that the terminal read out isn't too quick
+test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
 
 #----------------LIBRARY------------------------------------------
 
@@ -28,10 +28,11 @@ RAIN_EFFECT = 2
 SNAKE_EFFECT = 3
 SLOW_DEMO = 4
 TEST_EFFECT = 5
+SIMPLE_TEST_EFFECT = 6
 
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
-statePointer = 5
+statePointer = 6
 msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
 runs = 0    #might need to loop if it gets too large
 level = 0
@@ -71,6 +72,8 @@ def stateRelay():
         rainEffect()
     elif statePointer == TEST_EFFECT:
         testEffect()
+    elif statePointer == SIMPLE_TEST_EFFECT:
+        simpleTestEffect()
     else:
         idle()
 #-------------------STATE----FUNCTIONS-------------------------------
@@ -86,6 +89,17 @@ def stateSlowDemo():
 
 def rainEffect():
     pass
+
+def simpleTestEffect(): #should just turn on the first light on level 2 to purple
+    global runs
+    global level
+    level = 2
+    msg[2] = True
+    msg[6] = True
+    msg[8] = True
+    bitsDisplay()
+
+
 
 def testEffect():
     global runs #need to runs global to call in global varible
