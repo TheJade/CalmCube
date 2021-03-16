@@ -1,17 +1,22 @@
 #TO DOs:
 #   -maybe need to set the whole msg to False every once in a while to make sure Trues don't carry over 
-#   from previous code
+#       from previous code
 #   -auto go into test mode if not import spidev
+#   -even out RGBdisplay function, meaning for 50% right now it is on for 50% then off for 50%,
+#       better to alternate on and off for the whole time. Need to add (2**(3+mode)) somewhere I think
+#   -remove runs as a parameter for RGBdisplay, can just call it, no need as a parameter,
+#       still need to interate it outside once per layer cycle
+#   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = False #make True if wanting to print instead of run the code
-test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
-real_delay = 0.001
+test = False #make True if wanting to print to console instead of write to the raspberry pi GPIO
+test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 #----------------LIBRARY------------------------------------------
 
 try:
     import time # commonly used for timing (obviously)
+    import RPi.GPIO as GPIO     #this is to control other pins besides the spi
     import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
@@ -59,7 +64,7 @@ try:
                                 #       We use this for selecting what slave gets written to.
                                 #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
                                 #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-        spi.max_speed_hz = 20000  #this class attribute defines the max speed the data will be transfered to the device in hz
+        spi.max_speed_hz = 20000000  #this class attribute defines the max speed the data will be transfered to the device in hz
                                 #   For the raspberry pi don't set it any higher then 32 Mhz
                                 #   There is a debate about permissible speed values, with some insisting
                                 #   that the speed must be a power of 2, while others argue that it can be a
@@ -72,7 +77,6 @@ except:
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
 def stateRelay():
-    print("In stateRelay")
     if statePointer == SNAKE_EFFECT:
         snakeDisplay()
     elif statePointer == SLOW_DEMO:
@@ -100,24 +104,23 @@ def rainEffect():
     pass
 
 def simpleTestEffect(): #should just turn on the first light on level 2 to purple
-    print("In simpleTestEffect")
     global runs
     global level
     global msg
     level = 2
     msg[2] = True
-    msg[6] = True
-    msg[8] = True
+    msg[7] = True
+    msg[10] = True
     bitsDisplay()
 
 
 
-def testEffect():
-    global runs #need to runs global to call in global varible
-    global level
+def testEffect():   #!!! i recommend you create sub fuctions of the state to keep it organzied !!! I did not in this example !!!
+    global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
+    global level            #don't need to do if you are just using/reading the value 
     global msg
-    #maybe somehow enter low power mode or something
-    for i in range(6):
+    
+    for i in range(6):      #!!!need to assign first layers manually!!! could make a function but it is just 2 lines!!!
         msg[i] = (level == i)
     if level == 5:
         RGBdisplay(0, [0, 0, 0], runs)          #should be off
@@ -144,77 +147,61 @@ def testEffect():
         RGBdisplay(1, [212, 255, 0], runs, 2)
         RGBdisplay(2, [255, 176, 107], runs, 2)
     else:
-        raise Exception("An error occured with the testEffect Level")
+        raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
     level += 1
-    if level > 5:
+    if level > 5:       #!!!need to make it loop the layers!!!
         level = 0
-    runs += 1   #increment runs only once per layer cycle
-    bitsDisplay()
+    runs += 1           #!!!increment runs only once per layer cycle!!!
+    bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
 
 #-------------------COMMON---FUNCTIONS-------------------------------
 # functions often used by the different state functions
 
-def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+def bitsDisplay():
     #spi.writebytes
-    print("bitsDisplay")
-    try:
-        global runs
-        global msg
-        errorProtection()
+    if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
+        for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
+            byte = 0
+            for j in range(8):
+                if msg[8*(14-i) + j]:
+                    byte += 2**(j)    #for MSB
+            spi.writebytes([byte]) 
 
-        if not test:    #seems like there should be a more efficient way of doing this
-            for i in range(15):
-                byte = 0
-                for j in range(8):
-                    if msg[8*(14-i) + j]:   #(14-i) might have to become just i
-                        byte += 2**(7-j)    #for MSB
-                spi.writebytes(byte) 
-    
-        #testing output print           
-        else:   #modify the below for test formatting
-            print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-            for i in range(36):
-                print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ')
-                if i % 6 == 5:
-                    print("\n")
-    except:
-        print("Error occurred in bitsDisplay")
+    #testing output print           
+    else:   #modify the below for test formatting
+        print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
+        for i in range(36):
+            print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ') #could probably do it in a nicer way
+            if i % 6 == 5:
+                print("\n")
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
     #colour is an array of size 3 defining the colour parameters, 
     #runs is a constant that must be passed, 
-    #mode is the number of colour bits (0 is for 8 bit colour, 1 is for 16, 2 is for 32) the higher the mode the more accurate colours but longer it takes to update the led
-    print("In RGBdisplay")
-    try:
-
-        global msg    #I'm not sure if this is needed but just in case I have it in
-        for i in range(3):
-            msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
-    except:
-        print("Error occurred in RGBdisplay")
+    #mode is the number of colour bits (0 is for 8 bit colour, 1 is for 16, 2 is for 32, etc.) the higher the mode the more accurate colours but longer it takes to update the led
+    #   use mode 2 as max, it get flickery if it is at mode 3 or above
+    global msg    #I'm not sure if this is needed but just in case I have it in
+    for i in range(3):
+        msg[6+position*3 + i] = (runs % (2**(3+mode)) < colour[i]/(2**(5-mode)))
 
 def errorProtection():
-    print("In errorProtection")
-    try:
-        global msg
-        global runs
-        #error for multiple layers on
-        more_than_one_level = 0
-        for i in range(6):
-            more_than_one_level += msg[i]
-        if more_than_one_level > 1:
-            print("Multiple layers active, ignoring for testing mode")
-            if not test:
-                raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
-        #runs in too large or negaitive
-        if (runs < 0):
-            runs = 0
-        elif (runs > 2_100_000_000):
-            runs = 0
-    except:
-        print("Error occurred in errorProtection")
+    global msg  #i am pretty sure this can be removed but just in case I don't want to break the program so you, I left it
+    global runs
+    #error for multiple layers on
+    more_than_one_level = 0
+    for i in range(6):
+        more_than_one_level += msg[i]
+    if more_than_one_level > 1:
+        print("Multiple levels active at once, ignoring for testing mode")
+        if not test:
+            raise Exception("More then one layer is on at a time") #causes an error to occur with the terminal print message
+    #runs in too large or negaitive
+    if (runs < 0):
+        runs = 0
+    elif (runs > 2_100_000_000):
+        runs = 0
     
 
 #------------------MAIN------LOOP-----------------------------------
@@ -223,9 +210,7 @@ def errorProtection():
 
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
-        print("In main loop")
-        stateRelay()
-        time.sleep(real_delay)  
+        stateRelay()  
         if test:
             time.sleep(test_speed)
 
