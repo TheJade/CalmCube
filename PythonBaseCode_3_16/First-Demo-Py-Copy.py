@@ -9,25 +9,25 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = False #make True if wanting to print to console instead of write to the raspberry pi GPIO
+test = False #don't need to modify this any more for the testing or non testing modes
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 #----------------LIBRARY------------------------------------------
 
 try:
     import time # commonly used for timing (obviously)
-    import RPi.GPIO as GPIO     #this is to control other pins besides the spi
+    import RPi.GPIO as GPIO     #this is to control other pins besides the spi, for buttons and stuff
     import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
 except:
-    print("Error occurred importing a libary, don't worry if just testing")
+    test = True
+    print("Error occurred importing a libary, running testing mode instead...")
+
 finally:
     print("Start")
-    if test:
-        print("Testing mode is active")
     if not test:
-        print("Raspberry Pi mode active")
+        print("Raspberry Pi mode is active")
         
 
 #----------------GLOBAL---CONSTANTS--------------------------------
@@ -171,10 +171,10 @@ def bitsDisplay():
     #testing output print           
     else:   #modify the below for test formatting
         print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-        for i in range(36):
-            print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ') #could probably do it in a nicer way
-            if i % 6 == 5:
-                print("\n")
+        for i in range(6):
+            for j in range(6):      #the below formatting is likely more complicated then it needs to be
+                print("{:<2}".format(35-i*6-(5-j))+ ":" + str(list(map(int, msg[(6 + (35-i*6-(5-j))*3):(9 + 3*(35-i*6-(5-j)))]))), end = '  ') #could probably do it in a nicer way
+            print("\n")
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
