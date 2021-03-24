@@ -200,7 +200,7 @@ def errorProtection():
     #runs in too large or negaitive
     if (runs < 0):
         runs = 0
-    elif (runs > 2_100_000_000):
+    elif (runs > 2100000000):
         runs = 0
     
 
