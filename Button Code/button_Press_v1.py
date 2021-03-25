@@ -1,10 +1,20 @@
 import RPi.GPIO as GPIO
 from time import sleep
-GPIO.setmode(GPIO.BCM)
 
-button_Pin = 20
-GPIO.setup(button_Pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+button = 20
 
-while True:
-    print('Button Is Pressed')
-    sleep(2)
+def setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+def loop():
+    while True:
+        button_state = GPIO.input(button)
+        if button_state == False:
+            print('Button Pressed')
+            sleep(0.2)
+
+if __name__ == '__main__':
+    setup()
+    loop()
