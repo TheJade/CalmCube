@@ -10,7 +10,7 @@
 
 
 test = False #don't need to modify this any more for the testing or non testing modes
-test_speed = 0.05   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
+test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 #----------------LIBRARY------------------------------------------
 
@@ -66,7 +66,7 @@ try:
                                 #       We use this for selecting what slave gets written to.
                                 #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
                                 #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-        spi.max_speed_hz = 20000000  #this class attribute defines the max speed the data will be transfered to the device in hz
+        spi.max_speed_hz = 20000  #this class attribute defines the max speed the data will be transfered to the device in hz
                                 #   For the raspberry pi don't set it any higher then 32 Mhz
                                 #   There is a debate about permissible speed values, with some insisting
                                 #   that the speed must be a power of 2, while others argue that it can be a
@@ -126,7 +126,7 @@ def focusEffect():   #
 
     substate = 0
     start_time = time.time()
-    on_length=4; #on for 1 second per phase
+    on_length=4 #on for 1 second per phase
     
     if substate == 0:   
         for i in range(6):      #
@@ -362,7 +362,7 @@ def focusEffect():   #
         if ((time.time() - start_time)>on_length):
             substate = 1
             start_time = time.time() #increment time
-            bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
     if substate == 1:   
         for i in range(6):      #
             msg[i] = (level == i)
@@ -597,7 +597,7 @@ def focusEffect():   #
         if ((time.time() - start_time)>on_length):
             substate = 2
             start_time = time.time() #increment time
-            bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
     elif substate == 2:   
         for i in range(6):      #
             msg[i] = (level == i)
@@ -832,7 +832,7 @@ def focusEffect():   #
         if ((time.time() - start_time)>on_length):
             substate = 3
             start_time = time.time() #increment time
-            bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
     elif substate == 3:   
         for i in range(6):      #
             msg[i] = (level == i)
@@ -1067,7 +1067,7 @@ def focusEffect():   #
         if ((time.time() - start_time)>on_length):
             substate = 0
             start_time = time.time() #increment time
-            bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
             
    
     
@@ -1119,6 +1119,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 # functions often used by the different state functions
 
 def bitsDisplay():
+    errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
@@ -1160,7 +1161,7 @@ def errorProtection():
     #runs in too large or negaitive
     if (runs < 0):
         runs = 0
-    elif (runs > 2100000000):
+    elif (runs > 2100000000):   #might cause an error
         runs = 0
     
 
