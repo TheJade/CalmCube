@@ -64,7 +64,7 @@ try:
                                 #       We use this for selecting what slave gets written to.
                                 #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
                                 #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-        spi.max_speed_hz = 20000000  #this class attribute defines the max speed the data will be transfered to the device in hz
+        spi.max_speed_hz = 20000  #this class attribute defines the max speed the data will be transfered to the device in hz
                                 #   For the raspberry pi don't set it any higher then 32 Mhz
                                 #   There is a debate about permissible speed values, with some insisting
                                 #   that the speed must be a power of 2, while others argue that it can be a
@@ -159,6 +159,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 # functions often used by the different state functions
 
 def bitsDisplay():
+    errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
@@ -200,7 +201,7 @@ def errorProtection():
     #runs in too large or negaitive
     if (runs < 0):
         runs = 0
-    elif (runs > 2_100_000_000):
+    elif (runs > 2100000000):
         runs = 0
     
 
