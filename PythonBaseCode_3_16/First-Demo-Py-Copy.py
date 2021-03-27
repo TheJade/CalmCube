@@ -123,236 +123,282 @@ def focusEffect():   #
     global msg
     global start_time
     global substate
+    global colour_focus
+
 
     substate = 0
     start_time = time.time()
-    on_length=4 #on for 1 second per phase
+    on_length=1 #on for 1 second per phase
+    colour_focus = 10
+    
+    if colour_focus == 10:
+        colour_focus =0
+    if colour_focus == 0:
+        x=0         #Blue
+        y=128       #
+        z=255       #
+    elif colour_focus == 1:
+        x=0         #Aqua
+        y=204       #
+        z=204       #
+    elif colour_focus == 2:
+        x=0         #Dark Green
+        y=153       #
+        z=0         #
+    elif colour_focus == 3:
+        x=153       #Light Green
+        y=255       #
+        z=153       #
+    elif colour_focus == 4:
+        x=153       #Light turquoise
+        y=255       #
+        z=255       #
+    elif colour_focus == 5:
+        x=153       #Light blue
+        y=204       #
+        z=255       #
+    elif colour_focus == 6:
+        x=153       #Light royal purple
+        y=153       #
+        z=255       #
+    elif colour_focus == 7:
+        x=178       #Light purple
+        y=102       #
+        z=255       #
+    elif colour_focus == 8:
+        x=102       # purple
+        y=0         #
+        z=204       #
+    elif colour_focus == 9:
+        x=51        # dark blue
+        y=51        #
+        z=255       #
     
     if substate == 0:   
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 4:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 3:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 2:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 1:    
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 0:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         else:
             raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
         level += 1
@@ -363,53 +409,53 @@ def focusEffect():   #
             substate = 1
             start_time = time.time() #increment time
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
-    if substate == 1:   
+    elif substate == 1:   
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
             RGBdisplay(9, [0, 0, 0], runs)              #
             RGBdisplay(10, [0, 0, 0], runs)             #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
             RGBdisplay(13, [0, 0, 0], runs)             #
             RGBdisplay(14, [0, 0, 0], runs)             #
             RGBdisplay(15, [0, 0, 0], runs)             #
             RGBdisplay(16, [0, 0, 0], runs)             #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
             RGBdisplay(19, [0, 0, 0], runs)             #
             RGBdisplay(20, [0, 0, 0], runs)             #
             RGBdisplay(21, [0, 0, 0], runs)             #
             RGBdisplay(22, [0, 0, 0], runs)             #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
             RGBdisplay(25, [0, 0, 0], runs)             #
             RGBdisplay(26, [0, 0, 0], runs)             #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 4:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #
             RGBdisplay(1, [0, 0, 0], runs)              #
             RGBdisplay(2, [0, 0, 0], runs)              #
             RGBdisplay(3, [0, 0, 0], runs)              #
             RGBdisplay(4, [0, 0, 0], runs)              #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
             RGBdisplay(6, [0, 0, 0], runs)              #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
@@ -434,19 +480,19 @@ def focusEffect():   #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
             RGBdisplay(29, [0, 0, 0], runs)             #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
             RGBdisplay(31, [0, 0, 0], runs)             #
             RGBdisplay(32, [0, 0, 0], runs)             #
             RGBdisplay(33, [0, 0, 0], runs)             #
             RGBdisplay(34, [0, 0, 0], runs)             #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 3:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #
             RGBdisplay(1, [0, 0, 0], runs)              #
             RGBdisplay(2, [0, 0, 0], runs)              #
             RGBdisplay(3, [0, 0, 0], runs)              #
             RGBdisplay(4, [0, 0, 0], runs)              #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
             RGBdisplay(6, [0, 0, 0], runs)              #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
@@ -471,19 +517,19 @@ def focusEffect():   #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
             RGBdisplay(29, [0, 0, 0], runs)             #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
             RGBdisplay(31, [0, 0, 0], runs)             #
             RGBdisplay(32, [0, 0, 0], runs)             #
             RGBdisplay(33, [0, 0, 0], runs)             #
             RGBdisplay(34, [0, 0, 0], runs)             #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 2:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #
             RGBdisplay(1, [0, 0, 0], runs)              #
             RGBdisplay(2, [0, 0, 0], runs)              #
             RGBdisplay(3, [0, 0, 0], runs)              #
             RGBdisplay(4, [0, 0, 0], runs)              #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
             RGBdisplay(6, [0, 0, 0], runs)              #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
@@ -508,19 +554,19 @@ def focusEffect():   #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
             RGBdisplay(29, [0, 0, 0], runs)             #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
             RGBdisplay(31, [0, 0, 0], runs)             #
             RGBdisplay(32, [0, 0, 0], runs)             #
             RGBdisplay(33, [0, 0, 0], runs)             #
             RGBdisplay(34, [0, 0, 0], runs)             #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 1:    
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #
             RGBdisplay(1, [0, 0, 0], runs)              #
             RGBdisplay(2, [0, 0, 0], runs)              #
             RGBdisplay(3, [0, 0, 0], runs)              #
             RGBdisplay(4, [0, 0, 0], runs)              #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
             RGBdisplay(6, [0, 0, 0], runs)              #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
@@ -545,49 +591,49 @@ def focusEffect():   #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
             RGBdisplay(29, [0, 0, 0], runs)             #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
             RGBdisplay(31, [0, 0, 0], runs)             #
             RGBdisplay(32, [0, 0, 0], runs)             #
             RGBdisplay(33, [0, 0, 0], runs)             #
             RGBdisplay(34, [0, 0, 0], runs)             #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         elif level == 0:
-            RGBdisplay(0, [0, 128, 255], runs, 1)       #Blue entire level
-            RGBdisplay(1, [0, 128, 255], runs, 1)       #
-            RGBdisplay(2, [0, 128, 255], runs, 1)       #
-            RGBdisplay(3, [0, 128, 255], runs, 1)       #
-            RGBdisplay(4, [0, 128, 255], runs, 1)       #
-            RGBdisplay(5, [0, 128, 255], runs, 1)       #
-            RGBdisplay(6, [0, 128, 255], runs, 1)       #
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
             RGBdisplay(7, [0, 0, 0], runs)              #
             RGBdisplay(8, [0, 0, 0], runs)              #
             RGBdisplay(9, [0, 0, 0], runs)              #
             RGBdisplay(10, [0, 0, 0], runs)             #
-            RGBdisplay(11, [0, 128, 255], runs, 1)      #
-            RGBdisplay(12, [0, 128, 255], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
             RGBdisplay(13, [0, 0, 0], runs)             #
             RGBdisplay(14, [0, 0, 0], runs)             #
             RGBdisplay(15, [0, 0, 0], runs)             #
             RGBdisplay(16, [0, 0, 0], runs)             #
-            RGBdisplay(17, [0, 128, 255], runs, 1)      #
-            RGBdisplay(18, [0, 128, 255], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
             RGBdisplay(19, [0, 0, 0], runs)             #
             RGBdisplay(20, [0, 0, 0], runs)             #
             RGBdisplay(21, [0, 0, 0], runs)             #
             RGBdisplay(22, [0, 0, 0], runs)             #
-            RGBdisplay(23, [0, 128, 255], runs, 1)      #
-            RGBdisplay(24, [0, 128, 255], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
             RGBdisplay(25, [0, 0, 0], runs)             #
             RGBdisplay(26, [0, 0, 0], runs)             #
             RGBdisplay(27, [0, 0, 0], runs)             #
             RGBdisplay(28, [0, 0, 0], runs)             #
-            RGBdisplay(29, [0, 128, 255], runs, 1)      #
-            RGBdisplay(30, [0, 128, 255], runs, 1)      #
-            RGBdisplay(31, [0, 128, 255], runs, 1)      #
-            RGBdisplay(32, [0, 128, 255], runs, 1)      #
-            RGBdisplay(33, [0, 128, 255], runs, 1)      #
-            RGBdisplay(34, [0, 128, 255], runs, 1)      #
-            RGBdisplay(35, [0, 128, 255], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
         else:
             raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
         level += 1
@@ -646,28 +692,28 @@ def focusEffect():   #
             RGBdisplay(4, [0, 0, 0], runs)              #
             RGBdisplay(5, [0, 0, 0], runs)              #
             RGBdisplay(6, [0, 0, 0], runs)              #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
             RGBdisplay(14, [0, 0, 0], runs)             #
             RGBdisplay(15, [0, 0, 0], runs)             #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
             RGBdisplay(17, [0, 0, 0], runs)             #
             RGBdisplay(18, [0, 0, 0], runs)             #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
             RGBdisplay(20, [0, 0, 0], runs)             #
             RGBdisplay(21, [0, 0, 0], runs)             #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
             RGBdisplay(29, [0, 0, 0], runs)             #
             RGBdisplay(30, [0, 0, 0], runs)             #
             RGBdisplay(31, [0, 0, 0], runs)             #
@@ -683,10 +729,10 @@ def focusEffect():   #
             RGBdisplay(4, [0, 0, 0], runs)              #
             RGBdisplay(5, [0, 0, 0], runs)              #
             RGBdisplay(6, [0, 0, 0], runs)              #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
             RGBdisplay(8, [0, 0, 0], runs)              #
             RGBdisplay(9, [0, 0, 0], runs)              #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
             RGBdisplay(13, [0, 0, 0], runs)             #
@@ -701,10 +747,10 @@ def focusEffect():   #
             RGBdisplay(22, [0, 0, 0], runs)             #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
             RGBdisplay(26, [0, 0, 0], runs)             #
             RGBdisplay(27, [0, 0, 0], runs)             #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
             RGBdisplay(29, [0, 0, 0], runs)             #
             RGBdisplay(30, [0, 0, 0], runs)             #
             RGBdisplay(31, [0, 0, 0], runs)             #
@@ -720,10 +766,10 @@ def focusEffect():   #
             RGBdisplay(4, [0, 0, 0], runs)              #
             RGBdisplay(5, [0, 0, 0], runs)              #
             RGBdisplay(6, [0, 0, 0], runs)              #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
             RGBdisplay(8, [0, 0, 0], runs)              #
             RGBdisplay(9, [0, 0, 0], runs)              #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
             RGBdisplay(13, [0, 0, 0], runs)             #
@@ -738,10 +784,10 @@ def focusEffect():   #
             RGBdisplay(22, [0, 0, 0], runs)             #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
             RGBdisplay(26, [0, 0, 0], runs)             #
             RGBdisplay(27, [0, 0, 0], runs)             #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
             RGBdisplay(29, [0, 0, 0], runs)             #
             RGBdisplay(30, [0, 0, 0], runs)             #
             RGBdisplay(31, [0, 0, 0], runs)             #
@@ -757,28 +803,28 @@ def focusEffect():   #
             RGBdisplay(4, [0, 0, 0], runs)              #
             RGBdisplay(5, [0, 0, 0], runs)              #
             RGBdisplay(6, [0, 0, 0], runs)              #
-            RGBdisplay(7, [0, 128, 255], runs, 1)       #
-            RGBdisplay(8, [0, 128, 255], runs, 1)       #
-            RGBdisplay(9, [0, 128, 255], runs, 1)       #
-            RGBdisplay(10, [0, 128, 255], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
-            RGBdisplay(13, [0, 128, 255], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
             RGBdisplay(14, [0, 0, 0], runs)             #
             RGBdisplay(15, [0, 0, 0], runs)             #
-            RGBdisplay(16, [0, 128, 255], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
             RGBdisplay(17, [0, 0, 0], runs)             #
             RGBdisplay(18, [0, 0, 0], runs)             #
-            RGBdisplay(19, [0, 128, 255], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
             RGBdisplay(20, [0, 0, 0], runs)             #
             RGBdisplay(21, [0, 0, 0], runs)             #
-            RGBdisplay(22, [0, 128, 255], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
-            RGBdisplay(25, [0, 128, 255], runs, 1)      #
-            RGBdisplay(26, [0, 128, 255], runs, 1)      #
-            RGBdisplay(27, [0, 128, 255], runs, 1)      #
-            RGBdisplay(28, [0, 128, 255], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
             RGBdisplay(29, [0, 0, 0], runs)             #
             RGBdisplay(30, [0, 0, 0], runs)             #
             RGBdisplay(31, [0, 0, 0], runs)             #
@@ -925,14 +971,14 @@ def focusEffect():   #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
             RGBdisplay(13, [0, 0, 0], runs)             #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
             RGBdisplay(16, [0, 0, 0], runs)             #
             RGBdisplay(17, [0, 0, 0], runs)             #
             RGBdisplay(18, [0, 0, 0], runs)             #
             RGBdisplay(19, [0, 0, 0], runs)             #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
             RGBdisplay(22, [0, 0, 0], runs)             #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
@@ -962,14 +1008,250 @@ def focusEffect():   #
             RGBdisplay(11, [0, 0, 0], runs)             #
             RGBdisplay(12, [0, 0, 0], runs)             #
             RGBdisplay(13, [0, 0, 0], runs)             #
-            RGBdisplay(14, [0, 128, 255], runs, 1)      #
-            RGBdisplay(15, [0, 128, 255], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
             RGBdisplay(16, [0, 0, 0], runs)             #
             RGBdisplay(17, [0, 0, 0], runs)             #
             RGBdisplay(18, [0, 0, 0], runs)             #
             RGBdisplay(19, [0, 0, 0], runs)             #
-            RGBdisplay(20, [0, 128, 255], runs, 1)      #
-            RGBdisplay(21, [0, 128, 255], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!                                                 ###
+        if ((time.time() - start_time)>on_length):
+            substate = 4
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate == 4:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs)              #blue
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs)              #blue
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
             RGBdisplay(22, [0, 0, 0], runs)             #
             RGBdisplay(23, [0, 0, 0], runs)             #
             RGBdisplay(24, [0, 0, 0], runs)             #
@@ -1065,9 +1347,952 @@ def focusEffect():   #
             level = 0
         runs += 1           #!!!increment runs only once per layer cycle!!!
         if ((time.time() - start_time)>on_length):
-            substate = 0
+            substate = 5
             start_time = time.time() #increment time
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate == 5:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate = 6
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate == 6:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs)              #entire off
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [0, 0, 0], runs)              #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [0, 0, 0], runs)             #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [0, 0, 0], runs)             #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate = 7
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate == 7:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [0, 0, 0], runs)              #
+            RGBdisplay(2, [0, 0, 0], runs)              #
+            RGBdisplay(3, [0, 0, 0], runs)              #
+            RGBdisplay(4, [0, 0, 0], runs)              #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [0, 0, 0], runs)              #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [0, 0, 0], runs)             #
+            RGBdisplay(12, [0, 0, 0], runs)             #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [0, 0, 0], runs)             #
+            RGBdisplay(18, [0, 0, 0], runs)             #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [0, 0, 0], runs)             #
+            RGBdisplay(24, [0, 0, 0], runs)             #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [0, 0, 0], runs)             #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [0, 0, 0], runs)             #
+            RGBdisplay(32, [0, 0, 0], runs)             #
+            RGBdisplay(33, [0, 0, 0], runs)             #
+            RGBdisplay(34, [0, 0, 0], runs)             #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [0, 0, 0], runs)              #
+            RGBdisplay(8, [0, 0, 0], runs)              #
+            RGBdisplay(9, [0, 0, 0], runs)              #
+            RGBdisplay(10, [0, 0, 0], runs)             #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [0, 0, 0], runs)             #
+            RGBdisplay(14, [0, 0, 0], runs)             #
+            RGBdisplay(15, [0, 0, 0], runs)             #
+            RGBdisplay(16, [0, 0, 0], runs)             #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [0, 0, 0], runs)             #
+            RGBdisplay(20, [0, 0, 0], runs)             #
+            RGBdisplay(21, [0, 0, 0], runs)             #
+            RGBdisplay(22, [0, 0, 0], runs)             #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [0, 0, 0], runs)             #
+            RGBdisplay(26, [0, 0, 0], runs)             #
+            RGBdisplay(27, [0, 0, 0], runs)             #
+            RGBdisplay(28, [0, 0, 0], runs)             #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate = 8
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate == 8:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [x, y, z], runs, 1)       #Blue entire level
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(12, [x, y, z], runs, 1)      #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+            RGBdisplay(15, [x, y, z], runs, 1)      #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+            RGBdisplay(18, [x, y, z], runs, 1)      #
+            RGBdisplay(19, [x, y, z], runs, 1)      #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [x, y, z], runs, 1)      #
+            RGBdisplay(25, [x, y, z], runs, 1)      #
+            RGBdisplay(26, [x, y, z], runs, 1)      #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+            RGBdisplay(30, [x, y, z], runs, 1)      #
+            RGBdisplay(31, [x, y, z], runs, 1)      #
+            RGBdisplay(32, [x, y, z], runs, 1)      #
+            RGBdisplay(33, [x, y, z], runs, 1)      #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate = 0    #goes to start on focus 
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+
+        
             
    
     
