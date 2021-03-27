@@ -159,7 +159,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 # functions often used by the different state functions
 
 def bitsDisplay():
-    errorProtection()
+    #errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
