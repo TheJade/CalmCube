@@ -9,7 +9,7 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = True #make True if wanting to print to console instead of write to the raspberry pi GPIO
+test = False #make True if wanting to print to console instead of write to the raspberry pi GPIO
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 #----------------LIBRARY------------------------------------------
