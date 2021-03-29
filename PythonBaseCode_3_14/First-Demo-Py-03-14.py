@@ -4,23 +4,20 @@
 #   -auto go into test mode if not import spidev
 
 
-<<<<<<< HEAD:PythonBaseCode_3_16/First-Demo-Py-Copy.py
+
 test = False #don't need to modify this any more for the testing or non testing modes
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
-=======
+
 test = False #make True if wanting to print instead of run the code
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
 real_delay = 0.001
->>>>>>> parent of a51fa19 (I fixed all the current bugs so it can run on the pi):PythonBaseCode_3_14/First-Demo-Py-03-14.py
 
 #----------------LIBRARY------------------------------------------
 
 try:
     import time # commonly used for timing (obviously)
-<<<<<<< HEAD:PythonBaseCode_3_16/First-Demo-Py-Copy.py
     import RPi.GPIO as GPIO     #this is to control other pins besides the spi, for buttons and stuff
-=======
->>>>>>> parent of a51fa19 (I fixed all the current bugs so it can run on the pi):PythonBaseCode_3_14/First-Demo-Py-03-14.py
+
     import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
@@ -166,7 +163,6 @@ def testEffect():
 
 def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #spi.writebytes
-<<<<<<< HEAD:PythonBaseCode_3_16/First-Demo-Py-Copy.py
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
             byte = 0
@@ -182,7 +178,7 @@ def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             for j in range(6):      #the below formatting is likely more complicated then it needs to be
                 print("{:<2}".format(35-i*6-(5-j))+ ":" + str(list(map(int, msg[(6 + (35-i*6-(5-j))*3):(9 + 3*(35-i*6-(5-j)))]))), end = '  ') #could probably do it in a nicer way
             print("\n")
-=======
+
     print("bitsDisplay")
     try:
         global runs
@@ -206,7 +202,6 @@ def bitsDisplay():  #NEEDS TO BE TESTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     print("\n")
     except:
         print("Error occurred in bitsDisplay")
->>>>>>> parent of a51fa19 (I fixed all the current bugs so it can run on the pi):PythonBaseCode_3_14/First-Demo-Py-03-14.py
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
