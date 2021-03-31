@@ -25,10 +25,12 @@ spi.max_speed_hz = 20000  #this class attribute defines the max speed the data w
 
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
-        # first 3 columns should have white and Row 2 is the only one on
+        # first 3 columns are white light the 4th column should be red and only row 2 is on.
         spi.writebytes([0b00000000])
-        spi.writebytes([0b01111111])
+        spi.writebytes([0b11111111])
         spi.writebytes([0b11000010])
+        # if this works this means that input order of bits is most significant to least significant
+        # thus we must flip all the bits about the middle point in order to get the right output
 finally:
 
     spi.close()     #properly shuts down the activated pins
