@@ -1,9 +1,9 @@
 
 #----------------LIBRARY------------------------------------------
 
-try:
-    import time # commonly used for timing (obviously)
-    import spidev   #ignore the error on this line, make sure this import is last
+
+import time # commonly used for timing (obviously)
+import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
                     
@@ -30,5 +30,5 @@ try:       #if an error occurs in the try then it will execute finally
         spi.writebytes([0b01000010])
 
 finally:
-    if not test:    #we might want to remove this conditional statement
-        spi.close()     #properly shuts down the activated pins
+    
+    spi.close()     #properly shuts down the activated pins
