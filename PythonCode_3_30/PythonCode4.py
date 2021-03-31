@@ -29,10 +29,6 @@ try:       #if an error occurs in the try then it will execute finally
         spi.writebytes([0b00000000])
         spi.writebytes([0b11111111])
         spi.writebytes([0b11000010])
-        spi.writebytes([0b00000000])
-        spi.writebytes([0b00000000])
-        spi.writebytes([0b00000000])
-        spi.writebytes([0b00000000])
         # if this works this means that input order of bits is most significant to least significant
         # thus we must flip all the bits about the middle point in order to get the right output
 finally:
