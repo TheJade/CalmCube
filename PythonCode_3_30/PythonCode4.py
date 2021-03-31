@@ -25,9 +25,7 @@ spi.max_speed_hz = 20000  #this class attribute defines the max speed the data w
 
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
-        spi.writebytes([0b00000000]) #
-        spi.writebytes([0b11111110]) #
-        spi.writebytes([0b01000011]) # first 3 columns should have white and Row 2 is the only one on
+        spi.writebytes([0b010000111111111000000000]) # first 3 columns should have white and Row 2 is the only one on
 
 finally:
 
