@@ -25,8 +25,9 @@ spi.max_speed_hz = 20000  #this class attribute defines the max speed the data w
 
 try:       #if an error occurs in the try then it will execute finally
     while True: #will loop forever
-        spi.writebytes([0b01001001])
-        spi.writebytes([0b01000010])
+        spi.writebytes([0b11111111])
+        spi.writebytes([0b11111111])
+        spi.writebytes([0b01000011]) #all LED's in row 2 should be white
 
 finally:
 
