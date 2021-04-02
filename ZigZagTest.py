@@ -115,7 +115,6 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
     global msg
     global counter
     global start_time
-    level = 2
 
     for i in range(6):      #!!!need to assign first layers manually!!! could make a function but it is just 2 lines!!!
         msg[i] = (level == i)
