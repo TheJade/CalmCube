@@ -9,12 +9,8 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = False #don't need to modify this any more for the testing or non testing modes
-test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
-
-test = False #make True if wanting to print instead of run the code
+test = True #make True if wanting to print instead of run the code
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
-real_delay = 0.001
 
 #----------------LIBRARY------------------------------------------
 
@@ -44,10 +40,14 @@ SIMPLE_TEST_EFFECT = 6
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
-    statePointer = 5
+    statePointer = 6
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
+    start_time = 0
+    on_length = 0.1
+    counter = 0
+
 except:
     print("error in global varibles")
 
@@ -68,7 +68,7 @@ try:
                                 #       We use this for selecting what slave gets written to.
                                 #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
                                 #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-        spi.max_speed_hz = 20000000  #this class attribute defines the max speed the data will be transfered to the device in hz
+        spi.max_speed_hz = 20000  #this class attribute defines the max speed the data will be transfered to the device in hz
                                 #   For the raspberry pi don't set it any higher then 32 Mhz
                                 #   There is a debate about permissible speed values, with some insisting
                                 #   that the speed must be a power of 2, while others argue that it can be a
@@ -111,10 +111,30 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
     global runs
     global level
     global msg
+    global counter
+    global start_time
     level = 2
-    msg[2] = True
-    msg[7] = True
-    msg[10] = True
+
+    RGBdisplay(0, [255, 0, 0], runs, 0)
+    RGBdisplay(1, [255, 0, 0], runs, 0)
+    RGBdisplay(2, [255, 0, 0], runs, 0)
+    RGBdisplay(3, [255, 0, 0], runs, 0)
+    RGBdisplay(4, [255, 0, 0], runs, 0)
+    RGBdisplay(5, [255, 0, 0], runs, 0)
+    RGBdisplay(6, [255, 255, 0], runs, 0)
+    RGBdisplay(12, [255, 255, 0], runs, 0)
+    RGBdisplay(18, [255, 255, 0], runs, 0)
+    RGBdisplay(24, [255, 255, 0], runs, 0)
+    RGBdisplay(30, [255, 255, 0], runs, 0)
+
+    for i in range(6):      #!!!need to assign first layers manually!!! could make a function but it is just 2 lines!!!
+        msg[i] = (level == i)
+    #RGBdisplay(counter, [255-(7*counter), 7*counter, 0], runs, 0)
+    runs += 1
+    #if time.time() > start_time + on_length:
+    #    counter += 1
+    #if counter > 36:
+    #    start_time = time.time()
     bitsDisplay()
 
 
@@ -163,6 +183,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 # functions often used by the different state functions
 
 def bitsDisplay():
+    errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
         byte = [0 for i in range(15)]
@@ -204,7 +225,7 @@ def errorProtection():
     #runs in too large or negaitive
     if (runs < 0):
         runs = 0
-    elif (runs > 2_100_000_000):
+    elif (runs > 2100000000):
         runs = 0
     
 
