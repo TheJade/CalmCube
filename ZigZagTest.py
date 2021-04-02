@@ -70,7 +70,7 @@ try:
                                 #       We use this for selecting what slave gets written to.
                                 #       For our project we are just having a single line of slaves, so the default of CE0 works fine.
                                 #       If wanted to add another slave we could simple declare another instance of the object (e.g. spi2 = spidev.SpiDev(0, 1))
-        spi.max_speed_hz = 16384  #this class attribute defines the max speed the data will be transfered to the device in hz
+        spi.max_speed_hz = 1048576  #this class attribute defines the max speed the data will be transfered to the device in hz
                                 #   For the raspberry pi don't set it any higher then 32 Mhz
                                 #   There is a debate about permissible speed values, with some insisting
                                 #   that the speed must be a power of 2, while others argue that it can be a
@@ -121,10 +121,12 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
         msg[i] = (level == i)
     for i in range(36):
         RGBdisplay(i, [255 - (7*counter), (7*counter), 0], runs, 0)
-
+    level += 1
+    if level > 5:       #!!!need to make it loop the layers!!!
+        level = 0
     runs += 3
 
-    if time.time() > start_time + 0.2:
+    if time.time() > start_time + 1:
         counter += 1
         start_time = time.time()
     if counter > 36:
