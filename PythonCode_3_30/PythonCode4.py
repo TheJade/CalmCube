@@ -29,6 +29,13 @@ try:       #if an error occurs in the try then it will execute finally
         spi.writebytes([0b00000000, 0b11111111, 0b11000010])
         # if this works this means that input order of bits is most significant to least significant
         # thus we must flip all the bits about the middle point in order to get the right output
+        # for the example above as we can see the second layer corresponds to the second last bit
+        # outputted by the SPI
+
+        # for when we hook up the rest of the cube the last number on the list will correspond to
+        # the first 8 bits so our layers and the first RG and the first item will corresponds to the
+        # last 3 LED's so GB RGB RGB.
+
 finally:
 
     spi.close()     #properly shuts down the activated pins
