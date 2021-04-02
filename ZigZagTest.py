@@ -124,7 +124,7 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
 
     runs += 3
 
-    if time.time() > start_time +:
+    if time.time() > start_time:
         counter += 1
         start_time = time.time()
     if counter > 36:
