@@ -9,29 +9,18 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-<<<<<<< HEAD
-test = True #make True if wanting to print to console instead of write to the raspberry pi GPIO
-test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
-=======
-
 test = False #don't need to modify this any more for the testing or non testing modes
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 test = False #make True if wanting to print instead of run the code
 test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick
 real_delay = 0.001
->>>>>>> a2ab98777fdc78969c65536c2afc3130832fdcf0
 
 #----------------LIBRARY------------------------------------------
 
 try:
     import time # commonly used for timing (obviously)
-<<<<<<< HEAD
     import RPi.GPIO as GPIO     #this is to control other pins besides the spi
-=======
-    import RPi.GPIO as GPIO     #this is to control other pins besides the spi, for buttons and stuff
-
->>>>>>> a2ab98777fdc78969c65536c2afc3130832fdcf0
     import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
@@ -176,51 +165,20 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 def bitsDisplay():
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
+        byte = [0 for i in range(15)]
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
-            byte = 0
             for j in range(8):
                 if msg[8*(14-i) + j]:
-                    byte += 2**(j)    #for MSB
-            spi.writebytes([byte]) 
+                    byte[i] += 2**(j)    #for MSB
+        spi.writebytes(byte) 
 
     #testing output print           
     else:   #modify the below for test formatting
         print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-<<<<<<< HEAD
         for i in range(36):
             print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ') #could probably do it in a nicer way
             if i % 6 == 5:
                 print("\n")
-=======
-        for i in range(6):
-            for j in range(6):      #the below formatting is likely more complicated then it needs to be
-                print("{:<2}".format(35-i*6-(5-j))+ ":" + str(list(map(int, msg[(6 + (35-i*6-(5-j))*3):(9 + 3*(35-i*6-(5-j)))]))), end = '  ') #could probably do it in a nicer way
-            print("\n")
-
-    print("bitsDisplay")
-    try:
-        global runs
-        global msg
-        errorProtection()
-
-        if not test:    #seems like there should be a more efficient way of doing this
-            for i in range(15):
-                byte = 0
-                for j in range(8):
-                    if msg[8*(14-i) + j]:   #(14-i) might have to become just i
-                        byte += 2**(7-j)    #for MSB
-                spi.writebytes(byte) 
-    
-        #testing output print           
-        else:   #modify the below for test formatting
-            print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-            for i in range(36):
-                print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ')
-                if i % 6 == 5:
-                    print("\n")
-    except:
-        print("Error occurred in bitsDisplay")
->>>>>>> a2ab98777fdc78969c65536c2afc3130832fdcf0
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
