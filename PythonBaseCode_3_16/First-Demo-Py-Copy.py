@@ -162,12 +162,12 @@ def bitsDisplay():
     #errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
+        byte = [0 for i in range(15)]
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
-            byte = 0
             for j in range(8):
                 if msg[8*(14-i) + j]:
-                    byte += 2**(j)    #for MSB
-            spi.writebytes([byte]) 
+                    byte[i] += 2**(j)    #for MSB
+        spi.writebytes(byte)  
 
     #testing output print           
     else:   #modify the below for test formatting

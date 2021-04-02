@@ -26,12 +26,12 @@ SNAKE_EFFECT = 3
 SLOW_DEMO = 4
 TEST_EFFECT = 5
 SIMPLE_TEST_EFFECT = 6
-CAROSEL_EFFECT = 7
+CAROSEL_EFFECT = 8
 
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
-    statePointer = 7
+    statePointer = 8
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -324,12 +324,12 @@ def bitsDisplay():
     errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
+        byte = [0 for i in range(15)]
         for i in range(15):                 #cuz it can do it more efficently with numpy bool type arrays, look into it maybe
-            byte = 0
             for j in range(8):
                 if msg[8*(14-i) + j]:
-                    byte += 2**(j)    #for MSB
-            spi.writebytes([byte]) 
+                    byte[i] += 2**(j)    #for MSB
+        spi.writebytes(byte) 
 
     #testing output print           
     else:   #modify the below for test formatting
