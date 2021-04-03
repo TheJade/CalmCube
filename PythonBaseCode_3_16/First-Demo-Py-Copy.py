@@ -128,7 +128,7 @@ def focusEffect():   #
 
     substate = 0
     start_time = time.time()
-    on_length=1 #on for 1 second per phase
+    on_length=10 #on for 1 second per phase
     colour_focus = 10
     
     if colour_focus == 10:
