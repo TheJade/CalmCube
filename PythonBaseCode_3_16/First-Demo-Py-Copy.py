@@ -10,7 +10,7 @@
 
 
 test = False #don't need to modify this any more for the testing or non testing modes
-test_speed = 0.5   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
+test_speed = 0   #just a delay in seconds so that the terminal read out isn't too quick for testing mode
 
 #----------------LIBRARY------------------------------------------
 
@@ -46,6 +46,7 @@ try:
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
+    setup = True
 except:
     print("error in global varibles")
 
@@ -124,12 +125,15 @@ def focusEffect():   #
     global start_time
     global substate
     global colour_focus
+    global setup
 
-
-    substate = 0
-    start_time = time.time()
-    on_length=100 #on for 1 second per phase
-    colour_focus = 10
+    on_length = 1 #on for 1 second per phase
+    
+    if setup:   #runs once to set up the varibles correctly
+        substate = 0
+        start_time = time.time()
+        colour_focus = 10
+        setup = False
     
     if colour_focus == 10:
         colour_focus =0
@@ -406,7 +410,7 @@ def focusEffect():   #
             level = 0
         runs += 1           #!!!increment runs only once per layer cycle!!!
         if ((time.time() - start_time)>on_length):
-            substate = 1
+            substate = 1    
             start_time = time.time() #increment time
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
     elif substate == 1:   
