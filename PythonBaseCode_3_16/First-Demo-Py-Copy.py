@@ -20,6 +20,7 @@ try:
     import spidev   #ignore the error on this line, make sure this import is last
                     #this is the module that will control the pins, below is the best documentation I found
                     #   https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf  
+    import os
                     
 except:
     test = True
@@ -32,6 +33,13 @@ finally:
         
 
 #----------------GLOBAL---CONSTANTS--------------------------------
+#button values
+POWER_BUTTON = 10
+BUTTON1 = 11
+BUTTON2 = 13
+BUTTON3 = 15
+
+#state affect values
 RAIN_EFFECT = 2
 SNAKE_EFFECT = 3
 SLOW_DEMO = 4
@@ -39,6 +47,9 @@ TEST_EFFECT = 5
 SIMPLE_TEST_EFFECT = 6
 FOCUS_EFFECT = 7
 ON_IDLE_EFFECT = 8
+
+#timing constants
+#BUTTON_CHECK_DELAY = 0.1    #seconds, how often the device checks the buttons for input (acts as debouncing) #not currently in use
 
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
@@ -48,6 +59,8 @@ try:
     runs = 0    #might need to loop if it gets too large
     level = 0
     setup = True
+    #button_timing = 0  #not currently in use
+    
 except:
     print("error in global varibles")
 
@@ -75,12 +88,16 @@ try:
                                 #   multiple of 2. Tests at least partially confirm that the latter is correct. It
                                 #   was possible to set the speed at 3800 Hz, which appears to be a lower
                                 #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
+        GPIO.setwarnings(False) # Ignore warning for now
+        GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+        GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
 except:
     print("error in setup")
 
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
 def stateRelay():
+    checkForButtonPress()
     if statePointer == SNAKE_EFFECT:
         snakeDisplay()
     elif statePointer == SLOW_DEMO:
@@ -2604,12 +2621,6 @@ def focusEffect():   #
             colour_focus += 1        #increment to get next colour
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
-        
-            
-   
-    
-   
-
 def testEffect():   #!!! i recommend you create sub fuctions of the state to keep it organzied !!! I did not in this example !!!
     global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
     global level            #don't need to do if you are just using/reading the value 
@@ -2648,8 +2659,6 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         level = 0
     runs += 1           #!!!increment runs only once per layer cycle!!!
     bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
-
-        
 
 
 #-------------------COMMON---FUNCTIONS-------------------------------
@@ -2700,7 +2709,17 @@ def errorProtection():
         runs = 0
     elif (runs > 2100000000):   #might cause an error
         runs = 0
-    
+
+def checkForButtonPress():
+    global statePointer
+    if not test:    #might add timing if needed, """ and (time.time() > button_timing + button_check_delay) """
+        if GPIO.event_detected(BUTTON1):
+            statePointer = FOCUS_EFFECT
+        elif GPIO.event_detected(BUTTON2):
+            statePointer = ON_IDLE_EFFECT
+        elif GPIO.event_detected(POWER_BUTTON):
+            os.system("sudo shutdown -h now")
+
 
 #------------------MAIN------LOOP-----------------------------------
 #don't modify, will loop continuously. This needs to be at the end of the program
