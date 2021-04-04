@@ -37,7 +37,17 @@ finally:
 POWER_BUTTON = 10
 BUTTON1 = 11
 BUTTON2 = 13
-BUTTON3 = 15
+# I followed this guide
+# https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
+#setup instructions:
+#   You should connect one terminal to the 3.3V pin on the raspberry pi.
+#   Place, in series, the button and a resistor of value 260 ohm or higher (the higher the better)
+#   Connect the other terminal to the respective button pin (in GPIO mode, meaning counting all the pins, not like how the spi is set up)
+#           
+#Example for the power button:
+#
+#           3.3V  --------- >260 ohm Resistor --------- button --------- pin 10
+
 
 #state affect values
 RAIN_EFFECT = 2
@@ -2710,7 +2720,7 @@ def errorProtection():
     elif (runs > 2100000000):   #might cause an error
         runs = 0
 
-def checkForButtonPress():
+def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
     global statePointer
     if not test:    #might add timing if needed, """ and (time.time() > button_timing + button_check_delay) """
         if GPIO.event_detected(BUTTON1):
@@ -2718,6 +2728,8 @@ def checkForButtonPress():
         elif GPIO.event_detected(BUTTON2):
             statePointer = ON_IDLE_EFFECT
         elif GPIO.event_detected(POWER_BUTTON):
+            spi.close()     #properly shuts down the activated pins
+            GPIO.cleanup()  #just incase any other pins were activated, might cause an error not sure just remove GPIO.cleanup() if it does
             os.system("sudo shutdown -h now")
 
 
