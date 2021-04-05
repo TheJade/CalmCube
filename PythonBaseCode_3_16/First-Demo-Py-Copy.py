@@ -130,7 +130,7 @@ def on_idle():
     global colour_focus
     global setup
 
-    on_length = 0.75 #on for .5 second per phase
+    on_length = 0.1 #on for .5 second per phase
     
     if setup:   #runs once to set up the varibles correctly
         substate = 0
