@@ -43,7 +43,7 @@ ON_IDLE_EFFECT = 8
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
-    statePointer = 8
+    statePointer = 7
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
