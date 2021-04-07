@@ -126,7 +126,7 @@ def movingBox():
     global colour_focus
     global setup_box
 
-    on_length = 0.2 #on for 1 second per phase
+    on_length = 0.4 #on for 1 second per phase
     msg = [False for i in range(120)]
     
     if setup_box:   #runs once to set up the varibles correctly
@@ -134,10 +134,11 @@ def movingBox():
         start_time = time.time()
         colour_focus = 0
         setup_box = False
-    
 
     if colour_focus == 39:
-        colour_focus =0
+        setup_box = True
+        waveEffect()
+    
     if colour_focus == 0:
         a=66        #blue
         b=206       #
@@ -1375,7 +1376,8 @@ def waveEffect():
         setup_wave = False
     
     if colour_focus == 20:
-        colour_focus =0
+        setup_wave = True
+        movingBox()
     if colour_focus == 0:
         x=66        #blue
         y=206       #
