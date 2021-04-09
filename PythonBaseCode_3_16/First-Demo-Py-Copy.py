@@ -2737,11 +2737,17 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
 
 def button1_callback(channel):
     global statepointer
-    statepointer = 6
+    if statePointer != 6:
+        statepointer = 6
+    else:
+        statePointer = 8
 
 def button2_callback(channel):
     global statepointer
-    statepointer = 7
+    if statePointer != 7:
+        statepointer = 7
+    else:
+        statePointer = 8
 
 #------------------MAIN------LOOP-----------------------------------
 #don't modify, will loop continuously. This needs to be at the end of the program
