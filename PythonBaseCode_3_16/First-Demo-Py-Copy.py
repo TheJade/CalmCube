@@ -136,9 +136,7 @@ def movingBox():
         setup_box = False
 
     if colour_focus == 39:
-        setup_box = True
-        waveEffect()
-    
+        colour_focus == 0:
     if colour_focus == 0:
         a=66        #blue
         b=206       #
@@ -1356,105 +1354,103 @@ def movingBox():
             start_time = time.time() #increment time
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
-
 def waveEffect():
     global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
     global level            #
     global msg
     global start_time
     global substate_wave
-    global colour_focus
+    global colour_focus_wave
     global setup_wave
 
-    on_length = 0.2 #on for 1 second per phase
+    on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
     
     if setup_wave:   #runs once to set up the varibles correctly
         substate_wave = 0
         start_time = time.time()
-        colour_focus = 0
+        colour_focus_wave = 0
         setup_wave = False
     
-    if colour_focus == 20:
-        setup_wave = True
+    if colour_focus_wave == 20:
         movingBox()
-    if colour_focus == 0:
+    if colour_focus_wave == 0:
         x=66        #blue
         y=206       #
         z=245       #
-    elif colour_focus == 1:
+    elif colour_focus_wave == 1:
         x=66        #blue
         y=179       #
         z=245       #
-    elif colour_focus == 2:
+    elif colour_focus_wave == 2:
         x=66        # blue
         y=149       #
         z=245       #
-    elif colour_focus == 3:
+    elif colour_focus_wave == 3:
         x=66        #blue
         y=117       #
         z=245       #
-    elif colour_focus == 4:
+    elif colour_focus_wave == 4:
         x=66       #blue
         y=84       #
         z=245      #
-    elif colour_focus == 5:
+    elif colour_focus_wave == 5:
         x=96        # blue purple
         y=66        #
         z=245       #
-    elif colour_focus == 6:
+    elif colour_focus_wave == 6:
         x=120        # purple
         y=66         #
         z=245        #
-    elif colour_focus == 7:
+    elif colour_focus_wave == 7:
         x=147        # purple
         y=66         #
         z=245        #
-    elif colour_focus == 8:
+    elif colour_focus_wave == 8:
         x=167        # purple
         y=66         #
         z=245        #
-    elif colour_focus == 9:
+    elif colour_focus_wave == 9:
         x=182        # purple
         y=66         #
         z=245        #
-    elif colour_focus == 10:
+    elif colour_focus_wave == 10:
         x=203        #  purple pink
         y=66         #
         z=245        #
-    elif colour_focus == 11:
+    elif colour_focus_wave == 11:
         x=221        # purple pink
         y=66         #
         z=245        #
-    elif colour_focus == 12:
+    elif colour_focus_wave == 12:
         x=236        # pink
         y=66         #
         z=245        #
-    elif colour_focus == 13:
+    elif colour_focus_wave == 13:
         x=240        # pink
         y=120        #
         z=230        #
-    elif colour_focus == 14:
+    elif colour_focus_wave == 14:
         x=240        # pink
         y=120        #
         z=186        #
-    elif colour_focus == 15:
+    elif colour_focus_wave == 15:
         x=236        # pink purple
         y=120        #
         z=240        #
-    elif colour_focus == 16:
+    elif colour_focus_wave == 16:
         x=202       # light purple
         y=120       #
         z=240       #
-    elif colour_focus == 17:
+    elif colour_focus_wave == 17:
         x=122         #purple
         y=120         #
         z=240         #
-    elif colour_focus == 18:
+    elif colour_focus_wave == 18:
         x=120         #light blue
         y=192         #
         z=240         #
-    elif colour_focus == 19:
+    elif colour_focus_wave == 19:
         x=120         #light blue
         y=218         #
         z=240         #
@@ -2147,7 +2143,7 @@ def waveEffect():
         if ((time.time() - start_time)>on_length):
             substate_wave = 0    
             start_time = time.time() #increment time
-            colour_focus += 1        #increment to get next colour
+            colour_focus_wave += 1        #increment to get next colour
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
 def rainEffect():
