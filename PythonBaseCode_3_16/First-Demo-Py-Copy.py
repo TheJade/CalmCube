@@ -2736,16 +2736,16 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
     #        os.system("sudo shutdown -h now")
 
 def button1_callback(channel):
-    global statepointer
+    global statePointer
     if statePointer != 6:
-        statepointer = 6
+        statePointer = 6
     else:
         statePointer = 8
 
 def button2_callback(channel):
-    global statepointer
+    global statePointer
     if statePointer != 7:
-        statepointer = 7
+        statePointer = 7
     else:
         statePointer = 8
 
