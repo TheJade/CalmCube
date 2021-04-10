@@ -125,6 +125,15 @@ def movingBox():
     global substate_box
     global colour_focus
     global setup_box
+    global x
+    global y
+    global z
+    global a
+    global b
+    global c
+    global d
+    global e
+    global f
 
     on_length = 0.4 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -1362,6 +1371,9 @@ def waveEffect():
     global substate_wave
     global colour_focus_wave
     global setup_wave
+    global x
+    global y
+    global z
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
