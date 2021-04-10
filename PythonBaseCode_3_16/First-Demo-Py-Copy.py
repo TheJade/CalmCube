@@ -100,8 +100,8 @@ try:
                                 #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
         GPIO.setwarnings(False) # Ignore warning for now
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-        GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-        GPIO.setup(BUTTON2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+        GPIO.setup(BUTTON2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 except:
     print("error in setup")
 
@@ -2722,32 +2722,32 @@ def errorProtection():
         runs = 0
 
 def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
-    GPIO.add_event_detect(BUTTON1, GPIO.FALLING, callback=button1_callback, bouncetime = 100)
-    GPIO.add_event_detect(BUTTON2, GPIO.FALLING, callback=button2_callback, bouncetime = 100)
-
-    #if not test:    #might add timing if needed, """ and (time.time() > button_timing + button_check_delay) """
-    #    if GPIO.event_detected(BUTTON1):
-    #        statePointer = FOCUS_EFFECT
-    #    elif GPIO.event_detected(BUTTON2):
-    #        statePointer = ON_IDLE_EFFECT
-    #    elif GPIO.event_detected(POWER_BUTTON):
-    #        spi.close()     #properly shuts down the activated pins
-    #        GPIO.cleanup()  #just incase any other pins were activated, might cause an error not sure just remove GPIO.cleanup() if it does
-    #        os.system("sudo shutdown -h now")
-
-def button1_callback(channel):
     global statePointer
-    if statePointer != 6:
-        statePointer = 6
-    else:
-        statePointer = 8
+    if not test:    #might add timing if needed, """ and (time.time() > button_timing + button_check_delay) """
+        if GPIO.event_detected(BUTTON1):
+            if statePointer != FOCUS_EFFECT:
+                statePointer = FOCUS_EFFECT
+            else:
+                statePointer = ON_IDLE_EFFECT
+        elif GPIO.event_detected(BUTTON2):
+            if statePointer != SIMPLE_TEST_EFFECT:
+                statePointer = SIMPLE_TEST_EFFECT
+            else:  
+                statePointer = ON_IDLE_EFFECT
 
-def button2_callback(channel):
-    global statePointer
-    if statePointer != 7:
-        statePointer = 7
-    else:
-        statePointer = 8
+#def button1_callback(channel):
+#    global statePointer
+#    if statePointer != 6:
+#        statePointer = 6
+#    else:
+#        statePointer = 8
+
+#def button2_callback(channel):
+#    global statePointer
+#    if statePointer != 7:
+#        statePointer = 7
+#    else:
+#        statePointer = 8
 
 #------------------MAIN------LOOP-----------------------------------
 #don't modify, will loop continuously. This needs to be at the end of the program
