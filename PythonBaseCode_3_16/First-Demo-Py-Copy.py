@@ -69,6 +69,7 @@ try:
     runs = 0    #might need to loop if it gets too large
     level = 0
     setup = True
+    time_stamp = 0
     #button_timing = 0  #not currently in use
     
 except:
@@ -2723,17 +2724,35 @@ def errorProtection():
 
 def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
     global statePointer
+    global time_stamp
     if not test:    #might add timing if needed, """ and (time.time() > button_timing + button_check_delay) """
-        if GPIO.event_detected(BUTTON1):
-            if statePointer != FOCUS_EFFECT:
-                statePointer = FOCUS_EFFECT
-            else:
-                statePointer = ON_IDLE_EFFECT
-        elif GPIO.event_detected(BUTTON2):
-            if statePointer != SIMPLE_TEST_EFFECT:
-                statePointer = SIMPLE_TEST_EFFECT
-            else:  
-                statePointer = ON_IDLE_EFFECT
+        #if GPIO.event_detected(BUTTON1):
+        #    if statePointer != FOCUS_EFFECT:
+        #        statePointer = FOCUS_EFFECT
+        #    else:
+        #        statePointer = ON_IDLE_EFFECT
+        #elif GPIO.event_detected(BUTTON2):
+        #    if statePointer != SIMPLE_TEST_EFFECT:
+        #        statePointer = SIMPLE_TEST_EFFECT
+        #    else:  
+        #        statePointer = ON_IDLE_EFFECT
+        time_now = time.time()
+        if (time_now - time_stamp) >= 2:  
+            if GPIO.input(BUTTON1):
+                if statePointer != FOCUS_EFFECT:
+                    statePointer = FOCUS_EFFECT
+                else:
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now
+            elif GPIO.input(BUTTON2):
+                if statePointer != SIMPLE_TEST_EFFECT:
+                    statePointer = SIMPLE_TEST_EFFECT
+                else:  
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now        
+                
+        
+       
 
 #def button1_callback(channel):
 #    global statePointer
