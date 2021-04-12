@@ -57,7 +57,7 @@ try:
     # I followed this guide
     # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
 
-    statePointer = 9
+    statePointer = 8
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -132,7 +132,7 @@ def idle():
     pass    #just needs something in it to not cause an error
 
 def offState():
-    time.sleep(1)
+    time.sleep(0)
 
 def stateSlowDemo():
     pass
@@ -9904,18 +9904,33 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
         time_now = time.time()
         if (time_now - time_stamp) >= 2:  
             if not GPIO.input(BUTTON1):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
                 if statePointer != RAIN_EFFECT:
                     statePointer = RAIN_EFFECT
                 else:
                     statePointer = ON_IDLE_EFFECT
                 time_stamp = time_now
             elif not GPIO.input(BUTTON2):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
                 if statePointer != WAVE_EFFECT:
                     statePointer = WAVE_EFFECT
                 else:  
                     statePointer = ON_IDLE_EFFECT
                 time_stamp = time_now 
             elif not GPIO.input(POWER_BUTTON):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
                 if statePointer != OFF_STATE:
                     msg = [False for i in range(120)]
                     bitsDisplay()
