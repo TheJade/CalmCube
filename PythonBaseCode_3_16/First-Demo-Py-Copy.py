@@ -146,15 +146,15 @@ def movingBox():
     global colour_focus
     global setup_box
     global setup_wave
-    #global x
-    #global y
-    #global z
-    #global a
-    #global b
-    #global c
-    #global d
-    #global e
-    #global f
+    global x
+    global y
+    global z
+    global a
+    global b
+    global c
+    global d
+    global e
+    global f
 
     on_length = 0.4 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -1406,9 +1406,9 @@ def waveEffect():
     global substate_wave
     global colour_focus_wave
     global setup_wave
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -2208,9 +2208,9 @@ def rainEffect():
     global colour_focus
     global setup
     global setup_focus
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.3 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -6342,9 +6342,9 @@ def on_idle():
     global substate
     global colour_focus
     global setup
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.5 #on for .5 second per phase
     
@@ -6871,9 +6871,9 @@ def focusEffect():   #
     global colour_focus
     global setup_focus
     global setup
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.5 #on for 1 second per phase
     
@@ -9570,9 +9570,9 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
     global substate_test
     global colour_test
     global setup_test
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 1 #on for 1 second per phase
 
@@ -9899,6 +9899,7 @@ def errorProtection():
 def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
     global statePointer
     global time_stamp
+    global msg
     if not test:    
         time_now = time.time()
         if (time_now - time_stamp) >= 2:  
@@ -9916,6 +9917,8 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
                 time_stamp = time_now 
             elif not GPIO.input(POWER_BUTTON):
                 if statePointer != OFF_STATE:
+                    msg = [False for i in range(120)]
+                    bitsDisplay()
                     statePointer = OFF_STATE
                 else:
                     statePointer = ON_IDLE_EFFECT
