@@ -50,6 +50,13 @@ MOVINGBOX_EFFECT = 10
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
+    #button values
+    POWER_BUTTON = 10
+    BUTTON1 = 11
+    BUTTON2 = 13
+    # I followed this guide
+    # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
+
     statePointer = 2
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
@@ -86,12 +93,17 @@ try:
                                 #   multiple of 2. Tests at least partially confirm that the latter is correct. It
                                 #   was possible to set the speed at 3800 Hz, which appears to be a lower
                                 #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
+        GPIO.setwarnings(False) # Ignore warning for now
+        GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+        GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+        GPIO.setup(BUTTON2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 except:
     print("error in setup")
 
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
 def stateRelay():
+    checkForButtonPress()
     if statePointer == SNAKE_EFFECT:
         snakeDisplay()
     elif statePointer == SLOW_DEMO:
@@ -9854,6 +9866,25 @@ def errorProtection():
         runs = 0
     elif (runs > 2100000000):
         runs = 0
+
+def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
+    global statePointer
+    global time_stamp
+    if not test:    
+        time_now = time.time()
+        if (time_now - time_stamp) >= 2:  
+            if not GPIO.input(BUTTON1):
+                if statePointer != FOCUS_EFFECT:
+                    statePointer = FOCUS_EFFECT
+                else:
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now
+            elif not GPIO.input(BUTTON2):
+                if statePointer != SIMPLE_TEST_EFFECT:
+                    statePointer = SIMPLE_TEST_EFFECT
+                else:  
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now 
     
 
 #------------------MAIN------LOOP-----------------------------------
