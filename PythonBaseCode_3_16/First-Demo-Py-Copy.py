@@ -166,54 +166,132 @@ def movingBox():
         y=237       #
         z=97        #
     elif colour_focus == 1:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #green
         y=242       #
         z=145        #
     elif colour_focus == 2:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #green
         y=242       #
         z=184       #
     elif colour_focus == 3:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #turquoise
         y=242       #
         z=206       #
     elif colour_focus == 4:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #turquoise
         y=242       #
         z=230       #
     elif colour_focus == 5:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #turquoise
         y=242       #
         z=242       #
     elif colour_focus == 6:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #blue
         y=223       #
         z=242       #
     elif colour_focus == 7:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #blue
         y=196       #
         z=242       #
     elif colour_focus == 8:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #blue
         y=160       #
         z=242       #
     elif colour_focus == 9:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=97        #blue
         y=97       #
         z=242       #
     elif colour_focus == 10:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=124       #blue
         y=97        #
         z=242       #
     elif colour_focus == 11:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=153       #purple
         y=97        #
         z=242       #
     elif colour_focus == 12:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=169       #purple
         y=97        #
         z=242       #
     elif colour_focus == 13:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         a=66        #blue
         b=206       #
         c=245       #
@@ -224,50 +302,122 @@ def movingBox():
         y=97        #
         z=97        #
     elif colour_focus == 14:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=208        #purple
         y=97         #
         z=242        #
     elif colour_focus == 15:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=235        #purple
         y=97         #
         z=242        #
     elif colour_focus == 16:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #purple
         y=97         #
         z=223        #
     elif colour_focus == 17:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #pink
         y=97         #
         z=208        #
     elif colour_focus == 18:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #pink
         y=97         #
         z=182        #
     elif colour_focus == 19:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #pink
         y=97         #
         z=157        #
     elif colour_focus == 20:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #pink
         y=97         #
         z=133        #
     elif colour_focus == 21:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #red
         y=97         #
         z=111        #
     elif colour_focus == 22:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #red
         y=107        #
         z=97         #
     elif colour_focus == 23:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #orange
         y=145        #
         z=97         #
     elif colour_focus == 24:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #orange
         y=160        #
         z=97         #
     elif colour_focus == 25:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=242        #orange
         y=179        #
         z=97         #
@@ -282,50 +432,122 @@ def movingBox():
         y=97        #
         z=97        #
     elif colour_focus == 27:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=240       #orange
         y=195       #
         z=81        #
     elif colour_focus == 28:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=240       #orange
         y=221       #
         z=81        #
     elif colour_focus == 29:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=229       #yellow
         y=240       #
         z=81        #
     elif colour_focus == 30:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=206       #yellow
         y=240       #
         z=81        #
     elif colour_focus == 31:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=176       #green
         y=240       #
         z=81        #
     elif colour_focus == 32:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=145       #green
         y=240       #
         z=81        #
     elif colour_focus == 33:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=108       #green
         y=240       #
         z=81        #
     elif colour_focus == 34:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=81        #green
         y=240       #
         z=84        #
     elif colour_focus == 35:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=81        #green
         y=240       #
         z=113        #
     elif colour_focus == 36:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=81        #green
         y=240       #
         z=142       #
     elif colour_focus == 37:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=81        #green
         y=240       #
         z=168       #
     elif colour_focus == 38:
+        a=0        #
+        b=0       #
+        c=0       #
+        d=0        #
+        e=0       #
+        f=0       #
         x=81        #green
         y=240       #
         z=219       #
