@@ -9,7 +9,7 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = False #make True if wanting to print instead of run the code
+test = True #make True if wanting to print instead of run the code
 test_speed = 0.1   #just a delay in seconds so that the terminal read out isn't too quick
 
 #----------------LIBRARY------------------------------------------
@@ -118,15 +118,21 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
 
     for i in range(6):      #!!!need to assign first layers manually!!! could make a function but it is just 2 lines!!!
         msg[i] = (level == i)
+    if counter < 12:
+        colour = [255, 0, 0]
+    elif counter < 24:
+        colour = [0, 255, 0]
+    else:
+        colour = [0, 0, 255]
     for i in range(36):
-        RGBdisplay(i, [255 - (7*counter), (7*counter), 255 - (7*counter)], runs, 0)
+        RGBdisplay(i, colour, runs, 0)
     level += 1
     if level > 5:       #!!!need to make it loop the layers!!!
         level = 0
     runs += 3
 
     if time.time() > start_time + 0.5:
-        counter += 1
+        counter += 6
         start_time = time.time()
     if counter > 36:
         counter = 0
