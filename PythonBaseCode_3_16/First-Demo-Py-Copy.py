@@ -9798,6 +9798,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
 # functions often used by the different state functions
 
 def bitsDisplay():
+    global msg
     errorProtection()
     #spi.writebytes
     if not test:    #seems like there should be a more efficient way of doing this, we might be able to use spi.writebytes2(msg)
@@ -9806,15 +9807,16 @@ def bitsDisplay():
             for j in range(8):
                 if msg[8*(14-i) + j]:
                     byte[i] += 2**(j)    #for MSB
-        spi.writebytes(byte)  
+        spi.writebytes(byte) 
 
     #testing output print           
     else:   #modify the below for test formatting
         print("Level:", list(map(int, msg[0:6])), "                                             Runs:", runs, ) #just some formatting don't worry
-        for i in range(6):
-            for j in range(6):      #the below formatting is likely more complicated then it needs to be
-                print("{:<2}".format(35-i*6-(5-j))+ ":" + str(list(map(int, msg[(6 + (35-i*6-(5-j))*3):(9 + 3*(35-i*6-(5-j)))]))), end = '  ') #could probably do it in a nicer way
-            print("\n")
+        for i in range(36):
+            print("{:<2}".format(i)+ ":" + str(list(map(int, msg[(6 + i*3):(9 + 3*i)]))), end = '  ') #could probably do it in a nicer way
+            if i % 6 == 5:
+                print("\n")
+    msg = [False for i in range(120)]   #resets the values of msg to zero so it can be updated to new values
     
 def RGBdisplay(position, colour, runs, mode = 0):   #run to turn on or dim a perticular led
     #position is column of LED, 
@@ -9840,7 +9842,7 @@ def errorProtection():
     #runs in too large or negaitive
     if (runs < 0):
         runs = 0
-    elif (runs > 2100000000):   #might cause an error
+    elif (runs > 2100000000):
         runs = 0
     
 
