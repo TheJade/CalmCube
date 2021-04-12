@@ -9,7 +9,7 @@
 #   -brightness function, can just untilize RGBdisplay but focus on birghtness idk
 
 
-test = True #make True if wanting to print instead of run the code
+test = False #make True if wanting to print instead of run the code
 test_speed = 0.1   #just a delay in seconds so that the terminal read out isn't too quick
 
 #----------------LIBRARY------------------------------------------
