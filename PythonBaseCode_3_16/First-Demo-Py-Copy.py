@@ -57,7 +57,7 @@ try:
     # I followed this guide
     # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
 
-    statePointer = 2
+    statePointer = 9
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -345,6 +345,16 @@ def movingBox():
         x=81        #green
         y=240       #
         z=219       #
+    else:
+        a=0
+        b=0
+        c=0
+        d=0
+        e=0
+        f=0
+        x=0
+        y=0
+        z=0
 
     if substate_box == 0:   
         for i in range(6):      #
@@ -1492,6 +1502,10 @@ def waveEffect():
         x=120         #light blue
         y=218         #
         z=240         #
+    else:
+        x=0
+        y=0
+        z=0
     
 
     if substate_wave == 0:   
@@ -2211,6 +2225,10 @@ def rainEffect():
         x=0           #blue
         y=0           #
         z=255         #
+    else:
+        x=0
+        y=0
+        z=0
 
     if substate_rain > 28:  
         focusEffect()
@@ -6602,6 +6620,10 @@ def on_idle():
         x=51        # purple blue
         y=0      #
         z=255      #
+    else:
+        x=0
+        y=0
+        z=0
     
     if substate == 0:   
         for i in range(6):      #
@@ -9578,7 +9600,10 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         x=255       #white
         y=255         #
         z=255       #
-
+    else:
+        x=0
+        y=0
+        z=0
     
     if substate_test == 0:   
         for i in range(6):      #
