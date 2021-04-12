@@ -1396,7 +1396,7 @@ def movingBox():
         if ((time.time() - start_time)>on_length):
             substate_box = 0    
             start_time = time.time() #increment time
-        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s
 
 def waveEffect():
     global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
