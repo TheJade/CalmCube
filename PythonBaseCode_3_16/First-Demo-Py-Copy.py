@@ -2177,6 +2177,7 @@ def rainEffect():
     global substate_rain
     global colour_focus
     global setup
+    global setup_focus
     #global x
     #global y
     #global z
@@ -2194,10 +2195,12 @@ def rainEffect():
         x=0           #blue
         y=0           #
         z=255         #
+
     if substate_rain == 29:  
         focusEffect()
 
-    if substate_rain == 0:   
+    if substate_rain == 0:  
+        setup_focus = True 
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -6829,6 +6832,7 @@ def focusEffect():   #
     global substate
     global colour_focus
     global setup_focus
+    global setup
     #global x
     #global y
     #global z
@@ -6841,8 +6845,10 @@ def focusEffect():   #
         colour_focus = 0
         setup_focus = False
     
-    if colour_focus == 20:
-        colour_focus =0
+    if colour_focus > 19:
+        setup = True
+        colour_focus = 0
+        
     if colour_focus == 0:
         x=73       #blue
         y=3       #
@@ -6923,6 +6929,10 @@ def focusEffect():   #
         x=111         #purple blue
         y=3       #
         z=252         #
+    else:
+        x=0
+        y=0
+        z=0
     
     if substate == 0:   
         for i in range(6):      #
