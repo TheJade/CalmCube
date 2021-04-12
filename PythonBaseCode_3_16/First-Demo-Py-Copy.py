@@ -38,7 +38,7 @@ finally:
                                                          ######### state pointer 9 for Mode 2
 
 RAIN_EFFECT = 2
-SNAKE_EFFECT = 3
+OFF_STATE = 3
 SLOW_DEMO = 4
 TEST_EFFECT = 5
 SIMPLE_TEST_EFFECT = 6
@@ -98,6 +98,7 @@ try:
         GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
         GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
         GPIO.setup(BUTTON2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(POWER_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 except:
     print("error in setup")
 
@@ -105,8 +106,8 @@ except:
 #uses the function pointer to
 def stateRelay():
     checkForButtonPress()
-    if statePointer == SNAKE_EFFECT:
-        snakeDisplay()
+    if statePointer == OFF_STATE:
+        offState()
     elif statePointer == SLOW_DEMO:
         stateSlowDemo()
     elif statePointer == RAIN_EFFECT:
@@ -130,8 +131,8 @@ def stateRelay():
 def idle():
     pass    #just needs something in it to not cause an error
 
-def snakeDisplay():
-    pass
+def offState():
+    time.sleep(1)
 
 def stateSlowDemo():
     pass
@@ -9886,6 +9887,12 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
                 if statePointer != WAVE_EFFECT:
                     statePointer = WAVE_EFFECT
                 else:  
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now 
+            elif not GPIO.input(POWER_BUTTON):
+                if statePointer != OFF_STATE:
+                    statePointer = OFF_STATE
+                else:
                     statePointer = ON_IDLE_EFFECT
                 time_stamp = time_now 
     
