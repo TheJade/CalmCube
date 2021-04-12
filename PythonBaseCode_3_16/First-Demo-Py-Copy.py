@@ -36,6 +36,7 @@ finally:
                                                          ######### state pointer 8 for idle effect before button selection
                                                          ######### state pointer 2 for Mode 1
                                                          ######### state pointer 9 for Mode 2
+
 RAIN_EFFECT = 2
 SNAKE_EFFECT = 3
 SLOW_DEMO = 4
@@ -49,7 +50,7 @@ MOVINGBOX_EFFECT = 10
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
-    statePointer = 9
+    statePointer = 2
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -2176,9 +2177,9 @@ def rainEffect():
     global substate_rain
     global colour_focus
     global setup
-    global x
-    global y
-    global z
+    #global x
+    #global y
+    #global z
 
     on_length = 0.3 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -6304,9 +6305,9 @@ def on_idle():
     global substate
     global colour_focus
     global setup
-    global x
-    global y
-    global z
+    #global x
+    #global y
+    #global z
 
     on_length = 0.5 #on for .5 second per phase
     
@@ -6828,9 +6829,9 @@ def focusEffect():   #
     global substate
     global colour_focus
     global setup_focus
-    global x
-    global y
-    global z
+    #global x
+    #global y
+    #global z
 
     on_length = 0.5 #on for 1 second per phase
     
