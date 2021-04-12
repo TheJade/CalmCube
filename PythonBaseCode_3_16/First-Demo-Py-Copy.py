@@ -145,15 +145,15 @@ def movingBox():
     global colour_focus
     global setup_box
     global setup_wave
-    global x
-    global y
-    global z
-    global a
-    global b
-    global c
-    global d
-    global e
-    global f
+    #global x
+    #global y
+    #global z
+    #global a
+    #global b
+    #global c
+    #global d
+    #global e
+    #global f
 
     on_length = 0.4 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -164,7 +164,8 @@ def movingBox():
         colour_focus = 0
         setup_box = False
 
-    if colour_focus == 39:
+    if colour_focus > 38:
+        setup_wave = True
         colour_focus = 0
         #setup_wave = True
         #setup_box = True
@@ -1394,9 +1395,9 @@ def waveEffect():
     global substate_wave
     global colour_focus_wave
     global setup_wave
-    global x
-    global y
-    global z
+    #global x
+    #global y
+    #global z
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -1408,7 +1409,7 @@ def waveEffect():
         setup_wave = False
 
     
-    if colour_focus_wave == 20:
+    if colour_focus_wave > 19:
         movingBox()
     if colour_focus_wave == 0:
         x=66        #blue
@@ -1493,6 +1494,7 @@ def waveEffect():
     
 
     if substate_wave == 0:   
+        setup_box = True
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -2209,7 +2211,7 @@ def rainEffect():
         y=0           #
         z=255         #
 
-    if substate_rain == 29:  
+    if substate_rain > 28:  
         focusEffect()
 
     if substate_rain == 0:  
