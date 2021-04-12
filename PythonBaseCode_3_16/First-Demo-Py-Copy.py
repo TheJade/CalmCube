@@ -1409,6 +1409,7 @@ def waveEffect():
     global x
     global y
     global z
+    global setup_box
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -9900,6 +9901,11 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
     global statePointer
     global time_stamp
     global msg
+    global setup
+    global setup_focus
+    global setup_wave
+    global setup_box
+    global setup_test
     if not test:    
         time_now = time.time()
         if (time_now - time_stamp) >= 2:  
