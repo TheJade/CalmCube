@@ -130,6 +130,7 @@ def movingBox():
     global substate_box
     global colour_focus
     global setup_box
+    global setup_wave
     global x
     global y
     global z
@@ -151,6 +152,9 @@ def movingBox():
 
     if colour_focus == 39:
         colour_focus = 0
+        #setup_wave = True
+        #setup_box = True
+        #waveEffect() 
     if colour_focus == 0:
         a=66        #blue
         b=206       #
@@ -6304,7 +6308,7 @@ def on_idle():
     global y
     global z
 
-    on_length = 0.1 #on for .5 second per phase
+    on_length = 0.5 #on for .5 second per phase
     
     if setup:   #runs once to set up the varibles correctly
         substate = 0
