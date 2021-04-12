@@ -116,16 +116,19 @@ def simpleTestEffect(): #should just turn on the first light on level 2 to purpl
     global counter
     global start_time
 
+    if counter < 12:
+        for i in range(36):
+            msg[6+i*3] = True
+    elif counter < 24:
+        for i in range(36):
+            msg[6+i*3+1] = True
+    else:
+        for i in range(36):
+            msg[6+i*3+2] = True
+
     for i in range(6):      #!!!need to assign first layers manually!!! could make a function but it is just 2 lines!!!
         msg[i] = (level == i)
-    if counter < 12:
-        colour = [255, 0, 0]
-    elif counter < 24:
-        colour = [0, 255, 0]
-    else:
-        colour = [0, 0, 255]
-    for i in range(36):
-        RGBdisplay(i, colour, runs, 0)
+    
     level += 1
     if level > 5:       #!!!need to make it loop the layers!!!
         level = 0
