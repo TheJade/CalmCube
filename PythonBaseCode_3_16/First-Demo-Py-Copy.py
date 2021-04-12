@@ -66,6 +66,7 @@ try:
     setup_wave = True
     setup_box = True
     setup_test = True
+    time_stamp = 0
 except:
     print("error in global varibles")
 
@@ -9874,14 +9875,14 @@ def checkForButtonPress():  #checks if a button has been pressed and modifies th
         time_now = time.time()
         if (time_now - time_stamp) >= 2:  
             if not GPIO.input(BUTTON1):
-                if statePointer != FOCUS_EFFECT:
-                    statePointer = FOCUS_EFFECT
+                if statePointer != RAIN_EFFECT:
+                    statePointer = RAIN_EFFECT
                 else:
                     statePointer = ON_IDLE_EFFECT
                 time_stamp = time_now
             elif not GPIO.input(BUTTON2):
-                if statePointer != SIMPLE_TEST_EFFECT:
-                    statePointer = SIMPLE_TEST_EFFECT
+                if statePointer != WAVE_EFFECT:
+                    statePointer = WAVE_EFFECT
                 else:  
                     statePointer = ON_IDLE_EFFECT
                 time_stamp = time_now 
