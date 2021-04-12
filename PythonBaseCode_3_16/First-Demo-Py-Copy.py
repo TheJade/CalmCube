@@ -132,15 +132,15 @@ def movingBox():
     global colour_focus
     global setup_box
     global setup_wave
-    #global x
-    #global y
-    #global z
-    #global a
-    #global b
-    #global c
-    #global d
-    #global e
-    #global f
+    global x
+    global y
+    global z
+    global a
+    global b
+    global c
+    global d
+    global e
+    global f
 
     on_length = 0.4 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -1391,9 +1391,9 @@ def waveEffect():
     global colour_focus_wave
     global setup_wave
     global setup_box
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -2192,9 +2192,9 @@ def rainEffect():
     global colour_focus
     global setup
     global setup_focus
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.3 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -6326,9 +6326,9 @@ def on_idle():
     global substate
     global colour_focus
     global setup
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.5 #on for .5 second per phase
     
@@ -6855,9 +6855,9 @@ def focusEffect():   #
     global colour_focus
     global setup_focus
     global setup
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 0.5 #on for 1 second per phase
     
@@ -9554,9 +9554,9 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
     global substate_test
     global colour_test
     global setup_test
-    #global x
-    #global y
-    #global z
+    global x
+    global y
+    global z
 
     on_length = 1 #on for 1 second per phase
 
