@@ -38,7 +38,7 @@ finally:
                                                          ######### state pointer 9 for Mode 2
 
 RAIN_EFFECT = 2
-SNAKE_EFFECT = 3
+OFF_STATE = 3
 SLOW_DEMO = 4
 TEST_EFFECT = 5
 SIMPLE_TEST_EFFECT = 6
@@ -50,7 +50,16 @@ MOVINGBOX_EFFECT = 10
 #----------------GLOBAL---VARIBLES----------------------------------
 #don't add anything here, unless important to all states and function
 try:
-    statePointer = 9
+
+    #button values
+    POWER_BUTTON = 10
+    BUTTON1 = 11
+    BUTTON2 = 13
+    # I followed this guide
+    # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
+
+    statePointer = 8
+
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -59,6 +68,7 @@ try:
     setup_wave = True
     setup_box = True
     setup_test = True
+    time_stamp = 0
 except:
     print("error in global varibles")
 
@@ -86,14 +96,20 @@ try:
                                 #   multiple of 2. Tests at least partially confirm that the latter is correct. It
                                 #   was possible to set the speed at 3800 Hz, which appears to be a lower
                                 #   limit, and at 4800 Hz. Neither of these values is a power of 2. 
+        GPIO.setwarnings(False) # Ignore warning for now
+        GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+        GPIO.setup(BUTTON1, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+        GPIO.setup(BUTTON2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(POWER_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 except:
     print("error in setup")
 
 #-------------------STATE----RELAY-----------------------------------
 #uses the function pointer to
 def stateRelay():
-    if statePointer == SNAKE_EFFECT:
-        snakeDisplay()
+    checkForButtonPress()
+    if statePointer == OFF_STATE:
+        offState()
     elif statePointer == SLOW_DEMO:
         stateSlowDemo()
     elif statePointer == RAIN_EFFECT:
@@ -117,8 +133,8 @@ def stateRelay():
 def idle():
     pass    #just needs something in it to not cause an error
 
-def snakeDisplay():
-    pass
+def offState():
+    time.sleep(0)
 
 def stateSlowDemo():
     pass
@@ -1602,7 +1618,7 @@ def movingBox():
         if ((time.time() - start_time)>on_length):
             substate_box = 0    
             start_time = time.time() #increment time
-        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s
 
 def waveEffect():
     global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
@@ -1616,6 +1632,7 @@ def waveEffect():
     global x
     global y
     global z
+    global setup_box
 
     on_length = 0.15 #on for 1 second per phase
     msg = [False for i in range(120)]
@@ -9810,7 +9827,6 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         x=0
         y=0
         z=0
-
     
     if substate_test == 0:   
         for i in range(6):      #
@@ -10102,6 +10118,54 @@ def errorProtection():
         runs = 0
     elif (runs > 2100000000):
         runs = 0
+
+def checkForButtonPress():  #checks if a button has been pressed and modifies the state or turns off if it was
+    global statePointer
+    global time_stamp
+    global msg
+    global setup
+    global setup_focus
+    global setup_wave
+    global setup_box
+    global setup_test
+    if not test:    
+        time_now = time.time()
+        if (time_now - time_stamp) >= 2:  
+            if not GPIO.input(BUTTON1):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
+                if statePointer != RAIN_EFFECT:
+                    statePointer = RAIN_EFFECT
+                else:
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now
+            elif not GPIO.input(BUTTON2):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
+                if statePointer != WAVE_EFFECT:
+                    statePointer = WAVE_EFFECT
+                else:  
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now 
+            elif not GPIO.input(POWER_BUTTON):
+                setup = True
+                setup_focus = True
+                setup_wave = True
+                setup_box = True
+                setup_test = True
+                if statePointer != OFF_STATE:
+                    msg = [False for i in range(120)]
+                    bitsDisplay()
+                    statePointer = OFF_STATE
+                else:
+                    statePointer = ON_IDLE_EFFECT
+                time_stamp = time_now 
     
 
 #------------------MAIN------LOOP-----------------------------------
