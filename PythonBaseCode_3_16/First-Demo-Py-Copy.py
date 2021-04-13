@@ -8442,15 +8442,15 @@ def on_idle():
         z=255       #
     elif colour_focus == 1:
         x=0        #blue
-        y=255          #
-        z=0        #
+        y=60          #
+        z=255        #
     elif colour_focus == 2:
-        x=255         #blue
-        y=0           #
-        z=0         #
+        x=0         #blue
+        y=94           #
+        z=255         #
     elif colour_focus == 3:
-        x=255       #blue
-        y=255         #
+        x=0       #blue
+        y=123         #
         z=255       #
     elif colour_focus == 4:
         x=0       #blue
