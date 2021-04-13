@@ -11654,7 +11654,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
     global y
     global z
 
-    on_length = 1 #on for 1 second per phase
+    on_length = 0.5 #on for 1 second per phase
 
     if setup:   #runs once to set up the varibles correctly
         substate_test = 0
@@ -11662,7 +11662,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         colour_test = 0
         setup_test = False
     
-    if colour_test == 4:
+    if colour_test > 3:
         colour_test =0
     if colour_test == 0:
         x=255         #Red
