@@ -123,9 +123,9 @@ def stateRelay():
     elif statePointer == ON_IDLE_EFFECT:
         on_idle() 
     elif statePointer == WAVE_EFFECT:
-        waveEffect() 
+        movingBox() 
     elif statePointer == MOVINGBOX_EFFECT:
-        movingBox()
+        waveEffect() 
     else:
         idle()
 #-------------------STATE----FUNCTIONS-------------------------------
@@ -168,7 +168,6 @@ def movingBox():
         setup_box = False
 
     if colour_focus > 38:
-        setup_wave = True
         colour_focus = 0
 
     if colour_focus == 0:
@@ -577,8 +576,11 @@ def movingBox():
         x=0
         y=0
         z=0
-
-    if substate_box == 0:   
+    
+    if substate_box > 89:  
+        waveEffect()
+    if substate_box == 0:
+        setup_wave = True    
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -1616,9 +1618,2091 @@ def movingBox():
             level = 0
         runs += 1           #!!!increment runs only once per layer cycle!!!
         if ((time.time() - start_time)>on_length):
-            substate_box = 0    
+            substate_box = 30    
             start_time = time.time() #increment time
-        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s                                            #######################
+    elif substate_box == 30:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 31    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 31:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(6, [a, b, c], runs, 1)       #
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(12, [a, b, c], runs, 1)      #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(6, [a, b, c], runs, 1)       #
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(12, [a, b, c], runs, 1)      #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(23, [x, y, z], runs, 1)       #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(23, [x, y, z], runs, 1)       #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 32    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 32:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(12, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)       #
+            RGBdisplay(18, [a, b, c], runs, 1)      #
+            RGBdisplay(19, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(12, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)       #
+            RGBdisplay(18, [a, b, c], runs, 1)      #
+            RGBdisplay(19, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(16, [x, y, z], runs, 1)       #
+            RGBdisplay(17, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(16, [x, y, z], runs, 1)       #
+            RGBdisplay(17, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 33    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 33:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(18, [a, b, c], runs, 1)       #
+            RGBdisplay(19, [a, b, c], runs, 1)       #
+            RGBdisplay(24, [a, b, c], runs, 1)      #
+            RGBdisplay(25, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(18, [a, b, c], runs, 1)       #
+            RGBdisplay(19, [a, b, c], runs, 1)       #
+            RGBdisplay(24, [a, b, c], runs, 1)      #
+            RGBdisplay(25, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(10, [x, y, z], runs, 1)       #
+            RGBdisplay(11, [x, y, z], runs, 1)       #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(10, [x, y, z], runs, 1)       #
+            RGBdisplay(11, [x, y, z], runs, 1)       #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 34    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 34:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 35    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 35:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 36    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 36:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 37    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 37:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 38    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 38:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 39    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 39:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 40    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 40:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 41    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 41:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 42    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 42:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(29, [a, b, c], runs, 1)       #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+            RGBdisplay(35, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(29, [a, b, c], runs, 1)       #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+            RGBdisplay(35, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 43    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 43:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(21, [a, b, c], runs, 1)       #
+            RGBdisplay(22, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)      #
+            RGBdisplay(28, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(21, [a, b, c], runs, 1)       #
+            RGBdisplay(22, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)      #
+            RGBdisplay(28, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 44    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 44:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 0
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 45    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 45:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 1
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 46    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 46:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 2
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 47    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 47:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 3
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 48    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 48:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 4
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 49    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 49:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 5
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 50    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 50:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 6
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 51    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 51:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 7
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 52    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 52:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 8
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 53    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 53:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 9
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 54    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 54:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 10
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 55    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 55:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 11
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 56    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 56:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 12
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 57    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 57:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 12
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 58    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 58:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(8, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+            RGBdisplay(14, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(8, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+            RGBdisplay(14, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(21, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(21, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 59    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 59:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 60    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s                                               ###################
+    elif substate_box == 60:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 61    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 61:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(6, [a, b, c], runs, 1)       #
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(12, [a, b, c], runs, 1)      #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(6, [a, b, c], runs, 1)       #
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(12, [a, b, c], runs, 1)      #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(23, [x, y, z], runs, 1)       #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(23, [x, y, z], runs, 1)       #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+            RGBdisplay(29, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 62    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 62:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(12, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)       #
+            RGBdisplay(18, [a, b, c], runs, 1)      #
+            RGBdisplay(19, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(12, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)       #
+            RGBdisplay(18, [a, b, c], runs, 1)      #
+            RGBdisplay(19, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(16, [x, y, z], runs, 1)       #
+            RGBdisplay(17, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(16, [x, y, z], runs, 1)       #
+            RGBdisplay(17, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)      #
+            RGBdisplay(23, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 63    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 63:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(18, [a, b, c], runs, 1)       #
+            RGBdisplay(19, [a, b, c], runs, 1)       #
+            RGBdisplay(24, [a, b, c], runs, 1)      #
+            RGBdisplay(25, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(18, [a, b, c], runs, 1)       #
+            RGBdisplay(19, [a, b, c], runs, 1)       #
+            RGBdisplay(24, [a, b, c], runs, 1)      #
+            RGBdisplay(25, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(10, [x, y, z], runs, 1)       #
+            RGBdisplay(11, [x, y, z], runs, 1)       #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(10, [x, y, z], runs, 1)       #
+            RGBdisplay(11, [x, y, z], runs, 1)       #
+            RGBdisplay(16, [x, y, z], runs, 1)      #
+            RGBdisplay(17, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 64    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 64:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 65    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 65:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 66    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 66:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 67    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 67:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 68    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 68:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(5, [x, y, z], runs, 1)       #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+            RGBdisplay(11, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(24, [a, b, c], runs, 1)       #
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(30, [a, b, c], runs, 1)      #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 69    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 69:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(4, [x, y, z], runs, 1)       #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+            RGBdisplay(10, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(25, [a, b, c], runs, 1)       #
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(31, [a, b, c], runs, 1)      #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 70    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 70:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(3, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+            RGBdisplay(9, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(26, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(32, [a, b, c], runs, 1)      #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 71    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 71:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(2, [x, y, z], runs, 1)       #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+            RGBdisplay(8, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(27, [a, b, c], runs, 1)       #
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(33, [a, b, c], runs, 1)      #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 72    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 72:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [x, y, z], runs, 1)       #
+            RGBdisplay(1, [x, y, z], runs, 1)       #
+            RGBdisplay(6, [x, y, z], runs, 1)      #
+            RGBdisplay(7, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(29, [a, b, c], runs, 1)       #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+            RGBdisplay(35, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [a, b, c], runs, 1)       #
+            RGBdisplay(29, [a, b, c], runs, 1)       #
+            RGBdisplay(34, [a, b, c], runs, 1)      #
+            RGBdisplay(35, [a, b, c], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 73    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 73:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(7, [x, y, z], runs, 1)       #
+            RGBdisplay(8, [x, y, z], runs, 1)       #
+            RGBdisplay(13, [x, y, z], runs, 1)      #
+            RGBdisplay(14, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(21, [a, b, c], runs, 1)       #
+            RGBdisplay(22, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)      #
+            RGBdisplay(28, [a, b, c], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(21, [a, b, c], runs, 1)       #
+            RGBdisplay(22, [a, b, c], runs, 1)       #
+            RGBdisplay(27, [a, b, c], runs, 1)      #
+            RGBdisplay(28, [a, b, c], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 74    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 74:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 0
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 75    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 75:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 1
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 76    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 76:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 2
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 77    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 77:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 3
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 78    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 78:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 4
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 79    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 79:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 5
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 80    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 80:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 6
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 81    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 81:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 7
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 82    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 82:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 8
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 83    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 83:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 9
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 84    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 84:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 10
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 85    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 85:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 11
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 86    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 86:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 12
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [x, y, z], runs, 1)       #
+            RGBdisplay(15, [x, y, z], runs, 1)       #
+            RGBdisplay(20, [x, y, z], runs, 1)      #
+            RGBdisplay(21, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 87    
+            start_time = time.time() #increment time
+            colour_focus += 1        #increment to get next colour
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 87:                ###centre
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       ##colour 12
+        elif level == 4:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 3:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(14, [d, e, f], runs, 1)       #
+            RGBdisplay(15, [d, e, f], runs, 1)       #
+            RGBdisplay(20, [d, e, f], runs, 1)      #
+            RGBdisplay(21, [d, e, f], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 88    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 88:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 4:
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(8, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+            RGBdisplay(14, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(7, [a, b, c], runs, 1)       #
+            RGBdisplay(8, [a, b, c], runs, 1)       #
+            RGBdisplay(13, [a, b, c], runs, 1)      #
+            RGBdisplay(14, [a, b, c], runs, 1)      #
+        elif level == 2:
+            RGBdisplay(21, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+        elif level == 1:    
+            RGBdisplay(21, [x, y, z], runs, 1)       #
+            RGBdisplay(22, [x, y, z], runs, 1)       #
+            RGBdisplay(27, [x, y, z], runs, 1)      #
+            RGBdisplay(28, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 89    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
+    elif substate_box == 89:   
+        for i in range(6):      #
+            msg[i] = (level == i)
+        if level == 5:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 4:
+            RGBdisplay(0, [a, b, c], runs, 1)       #
+            RGBdisplay(1, [a, b, c], runs, 1)       #
+            RGBdisplay(6, [a, b, c], runs, 1)      #
+            RGBdisplay(7, [a, b, c], runs, 1)      #
+        elif level == 3:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 2:
+            RGBdisplay(0, [0, 0, 0], runs, 1)       #
+        elif level == 1:    
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        elif level == 0:
+            RGBdisplay(28, [x, y, z], runs, 1)       #
+            RGBdisplay(29, [x, y, z], runs, 1)       #
+            RGBdisplay(34, [x, y, z], runs, 1)      #
+            RGBdisplay(35, [x, y, z], runs, 1)      #
+        else:
+            raise Exception("An error occured with the testEffect Level, level is not a value from 0-5")
+        level += 1
+        if level > 5:       #!!!need to make it loop the layers!!!
+            level = 0
+        runs += 1           #!!!increment runs only once per layer cycle!!!
+        if ((time.time() - start_time)>on_length):
+            substate_box = 90    
+            start_time = time.time() #increment time
+        bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!! s                                               ###################
 
 def waveEffect():
     global runs     #!!! if you are going to modify a global value you must "  global VARIABLE_NAME   "!!!
@@ -1644,7 +3728,8 @@ def waveEffect():
         setup_wave = False
 
     if colour_focus_wave > 19:
-        movingBox()
+        setup_box = True
+        colour_focus_wave = 0
     if colour_focus_wave == 0:
         x=66        #blue
         y=206       #
@@ -1730,9 +3815,7 @@ def waveEffect():
         y=0
         z=0
     
-
     if substate_wave == 0:   
-        setup_box = True
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -9790,36 +11873,36 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
     global level            #
     global msg
     global start_time
-    global substate_test
-    global colour_test
-    global setup_test
+    global substate
+    global colour_focus
+    global setup
     global x
     global y
     global z
 
-    on_length = 1 #on for 1 second per phase
-
-    if setup:   #runs once to set up the varibles correctly
-        substate_test = 0
-        start_time = time.time()
-        colour_test = 0
-        setup_test = False
+    on_length = 0.5 #on for .5 second per phase
     
-    if colour_test == 4:
-        colour_test =0
-    if colour_test == 0:
-        x=255         #Red
+    if setup:   #runs once to set up the varibles correctly
+        substate = 0
+        start_time = time.time()
+        colour_focus = 0
+        setup = False
+    
+    if colour_focus == 66:
+        colour_focus =0
+    if colour_focus == 0:
+        x=255         #red
         y=0         #
         z=0       #
-    elif colour_test == 1:
+    elif colour_focus == 1:
         x=0        #green
         y=255          #
         z=0        #
-    elif colour_test == 2:
+    elif colour_focus == 2:
         x=0         #blue
         y=0           #
         z=255         #
-    elif colour_test == 3:
+    elif colour_focus == 3:
         x=255       #white
         y=255         #
         z=255       #
@@ -9828,7 +11911,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         y=0
         z=0
     
-    if substate_test == 0:   
+    if substate == 0:   
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -10060,9 +12143,9 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
             level = 0
         runs += 1           #!!!increment runs only once per layer cycle!!!
         if ((time.time() - start_time)>on_length):
-            substate_test = 0 #Probaly don't need this statement
+            substate = 0 #Probaly don't need this statement
             start_time = time.time() #increment time
-            colour_test += 1        #increment to get next colour
+            colour_focus += 1        #increment to get next colour
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
         
