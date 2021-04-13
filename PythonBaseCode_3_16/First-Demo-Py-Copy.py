@@ -57,7 +57,7 @@ try:
     # I followed this guide
     # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
 
-    statePointer = 5
+    statePointer = 8
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -8442,15 +8442,15 @@ def on_idle():
         z=255       #
     elif colour_focus == 1:
         x=0        #blue
-        y=60          #
-        z=255        #
+        y=255          #
+        z=0        #
     elif colour_focus == 2:
-        x=0         #blue
-        y=94           #
-        z=255         #
+        x=255         #blue
+        y=0           #
+        z=0         #
     elif colour_focus == 3:
-        x=0       #blue
-        y=123         #
+        x=255       #blue
+        y=255         #
         z=255       #
     elif colour_focus == 4:
         x=0       #blue
