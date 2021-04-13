@@ -57,7 +57,7 @@ try:
     # I followed this guide
     # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/#:~:text=Connecting%20the%20Raspberry%20Pi's%20general,case%20we%20use%20pin%2010.&text=The%20idea%20is%20that%20the,the%20button%20is%20not%20pushed.
 
-    statePointer = 8
+    statePointer = 5
     msg = [False for i in range(120)] #114 bits 108 for columns, 6 for rows
     runs = 0    #might need to loop if it gets too large
     level = 0
@@ -11647,36 +11647,36 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
     global level            #
     global msg
     global start_time
-    global substate_test
-    global colour_test
-    global setup_test
+    global substate
+    global colour_focus
+    global setup
     global x
     global y
     global z
 
-    on_length = 0.5 #on for 1 second per phase
-
-    if setup:   #runs once to set up the varibles correctly
-        substate_test = 0
-        start_time = time.time()
-        colour_test = 0
-        setup_test = False
+    on_length = 0.5 #on for .5 second per phase
     
-    if colour_test > 3:
-        colour_test =0
-    if colour_test == 0:
-        x=255         #Red
+    if setup:   #runs once to set up the varibles correctly
+        substate = 0
+        start_time = time.time()
+        colour_focus = 0
+        setup = False
+    
+    if colour_focus == 66:
+        colour_focus =0
+    if colour_focus == 0:
+        x=255         #red
         y=0         #
         z=0       #
-    elif colour_test == 1:
+    elif colour_focus == 1:
         x=0        #green
         y=255          #
         z=0        #
-    elif colour_test == 2:
+    elif colour_focus == 2:
         x=0         #blue
         y=0           #
         z=255         #
-    elif colour_test == 3:
+    elif colour_focus == 3:
         x=255       #white
         y=255         #
         z=255       #
@@ -11685,7 +11685,7 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
         y=0
         z=0
     
-    if substate_test == 0:   
+    if substate == 0:   
         for i in range(6):      #
             msg[i] = (level == i)
         if level == 5:
@@ -11917,9 +11917,9 @@ def testEffect():   #!!! i recommend you create sub fuctions of the state to kee
             level = 0
         runs += 1           #!!!increment runs only once per layer cycle!!!
         if ((time.time() - start_time)>on_length):
-            substate_test = 0 #Probaly don't need this statement
+            substate = 0 #Probaly don't need this statement
             start_time = time.time() #increment time
-            colour_test += 1        #increment to get next colour
+            colour_focus += 1        #increment to get next colour
         bitsDisplay()       #!!!need to bitsDisplay() once per layer update!!!
 
         
